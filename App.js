@@ -1,10 +1,8 @@
-import React from "react";
-import RootRoutes from "./src/routes/RootRoutes";
+import React from 'react';
+import RootRoutes from './src/routes/RootRoutes';
 
 const App = () => {
-  return (
-    <RootRoutes />
-  );
+  return <RootRoutes />;
 };
 
 export default App;

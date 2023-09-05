@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 
-const ReportSummaryScreen = () => {
+const AudioReportSummaryScreen = () => {
   return (
     <ImageBackground
       imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
@@ -37,12 +37,17 @@ const ReportSummaryScreen = () => {
         </View>
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Time taken by average normal child for a single response -xx seconds
+            Child respond to the father's voice - Well Done
           </Text>
         </View>
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Time taken by your child for a single response -xx seconds
+            Child respond to the mother's voice - Well Done
+          </Text>
+        </View>
+        <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
+          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+            Finaly child has good attention to mother and father's voice
           </Text>
         </View>
         <View style={[Theme.h20]} />
@@ -75,4 +80,4 @@ const ReportSummaryScreen = () => {
   );
 };
 
-export default ReportSummaryScreen;
+export default AudioReportSummaryScreen;
