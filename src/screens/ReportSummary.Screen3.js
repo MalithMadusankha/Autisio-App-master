@@ -8,13 +8,13 @@ import {
   View,
 } from 'react-native';
 
-const ReportSummaryScreen = () => {
+const ReportSummaryScreen3 = () => {
   return (
     <ImageBackground
       imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
       style={[Theme.w100, Theme.h100, Theme.justAlign]}
       source={require('../assets/img/background/bg_3.jpg')}>
-      <View style={[Theme.w100, Theme.h70, Theme.justAlign]}>
+      <View style={[Theme.w100, Theme.h70, Theme.justAlign, Theme.mt10]}>
         <View style={[Theme.w100, Theme.h5, Theme.flexDirRow]}>
           <TouchableOpacity
             style={[Theme.w15, Theme.h100, Theme.justAlign, Theme.ml2]}>
@@ -24,7 +24,7 @@ const ReportSummaryScreen = () => {
             />
           </TouchableOpacity>
         </View>
-        <View style={[Theme.w90, Theme.h20, Theme.flexDirRow]}>
+        <View style={[Theme.w90, Theme.h10, Theme.flexDirRow]}>
           <View style={[Theme.w10]} />
           <View style={[Theme.w90, Theme.h100, Theme.justifyCenter]}>
             <Text style={[Theme.fBlack, Theme.f25, Theme.fBold]}>
@@ -32,25 +32,49 @@ const ReportSummaryScreen = () => {
             </Text>
           </View>
         </View>
-        <View style={[Theme.h20]} />
         <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Duration of the object on screen -xx seconds
+            Focused Attention Games ==> Good
           </Text>
         </View>
         <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Duration of tracking object on screen -xx seconds
+            Selective Attention Games ==> Very Good
           </Text>
         </View>
         <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Duration of not tracking the object on screen -xx seconds
+            Divided Attention Games ==> Bad
           </Text>
         </View>
         <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Duration of tracking by an average child -xx seconds
+            Sustained Attention Games ==> Very Good
+          </Text>
+        </View>
+        <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
+          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+            Shifting Attention Games ==> Very Bad
+          </Text>
+        </View>
+        <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
+          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+            Gaze Analysing Games ==> Bad
+          </Text>
+        </View>
+        <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
+          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+            Auditory Attention ==> Very Good
+          </Text>
+        </View>
+        <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
+          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+            Audio Attention Games ==> Very Good
+          </Text>
+        </View>
+        <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
+          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+            Finaly, Child needs more attention. Helth is good.
           </Text>
         </View>
         <View style={[Theme.h20]} />
@@ -81,4 +105,4 @@ const ReportSummaryScreen = () => {
   );
 };
 
-export default ReportSummaryScreen;
+export default ReportSummaryScreen3;

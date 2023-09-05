@@ -1,10 +1,9 @@
 import React, {useState, useRef} from 'react';
-import {Dimensions, Text, View, Image} from 'react-native';
-import Theme from '../../assets/theme/AxTheme';
+import {Dimensions, Text, View, Image, Button} from 'react-native';
+import Theme from '../assets/theme/AxTheme';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import AxButton from '../../components/AxButton';
+import AxButton from '../components/AxButton';
 import ImagePicker from 'react-native-image-crop-picker';
-import axios from 'axios';
 
 const ChildFaceScreen = () => {
   const SCREEN_HEIGHT = Dimensions.get('screen').height;
@@ -92,6 +91,7 @@ const ChildFaceScreen = () => {
 
           <View style={[Theme.w80, Theme.h6]}>
             <AxButton ButtonName={'CAPTURE'} onPressButton={openCamera} />
+            {/* <Button title="capture" onPress={openCamera} /> */}
           </View>
 
           <View style={[Theme.h4]} />
