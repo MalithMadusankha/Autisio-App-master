@@ -13,6 +13,11 @@ import ReportSummaryScreen2 from '../screens/ReportSummary.Screen2';
 import WellDoneScreen from '../screens/WellDone.Screen';
 import SelectSimilarAnimalScreen from '../screens/SelectSimilarAnimal.Screen';
 import TopBottomAnimalScreen from '../screens/TopBottomAnimal.Screen';
+import ChildFaceScreen from '../screens/ChildFace.Screen';
+import AudioAttentionScreen from '../screens/AudioAttention.Screen';
+import InstuctionScreen from '../screens/Instuction.Screen';
+import AudioReportSummaryScreen from '../screens/AudioReportSummary.Screen';
+import ReportSummaryScreen3 from '../screens/ReportSummary.Screen3';
 
 const RootRoutes = () => {
   const Stack = createStackNavigator();
@@ -52,6 +57,19 @@ const RootRoutes = () => {
         <Stack.Screen
           name="TopBottomAnimalScreen"
           component={TopBottomAnimalScreen}
+        />
+        <Stack.Screen
+          name="audioAttentionGame"
+          component={AudioAttentionScreen}
+        />
+        <Stack.Screen name="instructionsScreen" component={InstuctionScreen} />
+        <Stack.Screen
+          name="audioReportSummaryScreen"
+          component={AudioReportSummaryScreen}
+        />
+        <Stack.Screen
+          name="reportSummaryScreen3"
+          component={ReportSummaryScreen3}
         />
       </Stack.Navigator>
     </NavigationContainer>
