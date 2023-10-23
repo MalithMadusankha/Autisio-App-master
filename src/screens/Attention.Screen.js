@@ -36,7 +36,7 @@ const AttentionScreen = ({navigation}) => {
               GAME_TITLE={'Focused Attention Games'}
               GAME_STYLE={[Theme.w80, Theme.h60]}
               GAME_IMG={require('../assets/img/animals/cartoon-cat.webp')}
-              GAME_ON_PRESS={() => navigation.navigate('ClickAnimalScreen')}
+              GAME_ON_PRESS={() => navigation.navigate('SelectAnimalsScreen')}
             />
 
             <GameCardComponent

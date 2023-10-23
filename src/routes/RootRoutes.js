@@ -20,59 +20,35 @@ import AudioReportSummaryScreen from '../screens/AudioReportSummary.Screen';
 import ReportSummaryScreen3 from '../screens/ReportSummary.Screen3';
 
 const RootRoutes = () => {
-  const Stack = createStackNavigator();
-  return (
-    <NavigationContainer independent={true}>
-      <Stack.Navigator
-        shifting="true"
-        screenOptions={() => ({
-          headerShown: false,
-          gestureEnabled: true,
-          cardOverlayEnabled: false,
-          gestureDirection: 'horizontal',
-        })}>
-        <Stack.Screen name="TermsScreen" component={TermsScreen} />
-        <Stack.Screen
-          name="SelectAnimalsScreen"
-          component={SelectAnimalsScreen}
-        />
-        <Stack.Screen name="AttentionScreen" component={AttentionScreen} />
-        <Stack.Screen name="ClickAnimalScreen" component={ClickAnimalScreen} />
-        <Stack.Screen name="GameLevel1Screen" component={GameLevel1Screen} />
-        <Stack.Screen name="GameLevel2Screen" component={GameLevel2Screen} />
-        <Stack.Screen name="GameLevel3Screen" component={GameLevel3Screen} />
-        <Stack.Screen
-          name="ReportSummaryScreen"
-          component={ReportSummaryScreen}
-        />
-        <Stack.Screen
-          name="ReportSummaryScreen2"
-          component={ReportSummaryScreen2}
-        />
-        <Stack.Screen name="WellDoneScreen" component={WellDoneScreen} />
-        <Stack.Screen
-          name="SelectSimilarAnimalScreen"
-          component={SelectSimilarAnimalScreen}
-        />
-        <Stack.Screen
-          name="TopBottomAnimalScreen"
-          component={TopBottomAnimalScreen}
-        />
-        <Stack.Screen
-          name="audioAttentionGame"
-          component={AudioAttentionScreen}
-        />
-        <Stack.Screen name="instructionsScreen" component={InstuctionScreen} />
-        <Stack.Screen
-          name="audioReportSummaryScreen"
-          component={AudioReportSummaryScreen}
-        />
-        <Stack.Screen
-          name="reportSummaryScreen3"
-          component={ReportSummaryScreen3}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    const Stack = createStackNavigator();
+    return (
+        <NavigationContainer independent={true}>
+            <Stack.Navigator
+                shifting="true"
+                screenOptions={() => ({
+                    headerShown: false,
+                    gestureEnabled: true,
+                    cardOverlayEnabled: false,
+                    gestureDirection: 'horizontal',
+                })}>
+                {/*<Stack.Screen name="TermsScreen" component={TermsScreen} />*/}
+                <Stack.Screen name="SelectAnimalsScreen" component={SelectAnimalsScreen}/>
+                <Stack.Screen name="AttentionScreen" component={AttentionScreen} />
+                <Stack.Screen name="ClickAnimalScreen" component={ClickAnimalScreen} />
+                <Stack.Screen name="GameLevel1Screen" component={GameLevel1Screen} />
+                <Stack.Screen name="GameLevel2Screen" component={GameLevel2Screen} />
+                <Stack.Screen name="GameLevel3Screen" component={GameLevel3Screen} />
+                <Stack.Screen name="ReportSummaryScreen" component={ReportSummaryScreen}/>
+                <Stack.Screen name="ReportSummaryScreen2" component={ReportSummaryScreen2}/>
+                <Stack.Screen name="WellDoneScreen" component={WellDoneScreen} />
+                <Stack.Screen name="SelectSimilarAnimalScreen" component={SelectSimilarAnimalScreen}/>
+                <Stack.Screen name="TopBottomAnimalScreen" component={TopBottomAnimalScreen}/>
+                <Stack.Screen name="audioAttentionGame" component={AudioAttentionScreen}/>
+                <Stack.Screen name="instructionsScreen" component={InstuctionScreen} />
+                <Stack.Screen name="audioReportSummaryScreen" component={AudioReportSummaryScreen}/>
+                <Stack.Screen name="reportSummaryScreen3" component={ReportSummaryScreen3}/>
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 };
 export default RootRoutes;

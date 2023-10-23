@@ -59,7 +59,9 @@ const ReportSummaryScreen = () => {
             Theme.bgBlack,
             Theme.borderRadius20,
             Theme.justAlign,
-          ]}>
+          ]}
+          onPress={() =>  useNavigate.navigate('SelectAnimalsScreen')}
+        >
           <Text
             style={[
               Theme.fWhite,

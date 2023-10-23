@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Theme from '../assets/theme/AxTheme';
 import {
   Dimensions,
@@ -9,8 +9,19 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {useNavigation, useRoute} from "@react-navigation/native";
 
 const WellDoneScreen = () => {
+
+    const route = useRoute();
+    const receivedData = route.params?.data;
+
+    useEffect(() => {
+        console.log(JSON.stringify(receivedData))
+    }, []);
+
+    const useNavigate = useNavigation();
+
   return (
     <View style={[Theme.container, Theme.bgMain1, Theme.w100, Theme.h100]}>
       <ImageBackground
@@ -63,7 +74,10 @@ const WellDoneScreen = () => {
               Theme.bgBlack,
               Theme.borderRadius20,
               Theme.justAlign,
-            ]}>
+            ]}
+
+            onPress={() =>  useNavigate.navigate('ReportSummaryScreen')}
+          >
             <Text
               style={[
                 Theme.fWhite,

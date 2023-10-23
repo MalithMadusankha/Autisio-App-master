@@ -1,159 +1,188 @@
 import React, {useState, useEffect} from 'react';
 import {
-  ImageBackground,
-  Text,
-  StyleSheet,
-  View,
-  Image,
-  Dimensions,
-  Animated,
-  TouchableOpacity,
+    ImageBackground,
+    Text,
+    StyleSheet,
+    View,
+    Image,
+    Dimensions,
+    Animated,
+    TouchableOpacity,
 } from 'react-native';
 import Theme from '../assets/theme/AxTheme';
+import {useNavigation} from "@react-navigation/native";
 
 const ClickAnimalScreen = () => {
-  const [showImage1, setShowImage1] = useState(false);
-  const [showImage2, setShowImage2] = useState(false);
-  const [showImage3, setShowImage3] = useState(false);
-  const [showImage4, setShowImage4] = useState(false);
+    const [showImage1, setShowImage1] = useState(false);
+    const [showImage2, setShowImage2] = useState(false);
+    const [showImage3, setShowImage3] = useState(false);
+    const [showImage4, setShowImage4] = useState(false);
+    const [elapsedTime, setElapsedTime] = useState(0);
+    const [isTimerRunning, setIsTimerRunning] = useState(true);
+    const [startTime, setStartTime] = useState(0);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setShowImage1(false);
-      setShowImage2(true);
-    }, 5000);
+    useEffect(() => {
+        setTimeout(() => {
+            setShowImage1(false);
+            setShowImage2(true);
+        }, 5000);
 
-    setTimeout(() => {
-      setShowImage2(false);
-      setShowImage3(true);
-    }, 10000);
+        setTimeout(() => {
+            setShowImage2(false);
+            setShowImage3(true);
+        }, 10000);
 
-    setTimeout(() => {
-      setShowImage3(false);
-      setShowImage4(true);
-    }, 15000);
+        setTimeout(() => {
+            setShowImage3(false);
+            setShowImage4(true);
+        }, 15000);
 
-    setTimeout(() => {
-      setShowImage4(false);
-      //setShowImage4(true);
-    }, 20000);
-  }, []);
+        setTimeout(() => {
+            setShowImage4(false);
+        }, 20000);
 
-  const select1 = () => {
-    if (showImage1 === true) {
-      //alert("DONE")
-    } else {
-      alert('Try Again!');
-    }
-  };
+        let intervalId;
+        if (isTimerRunning) {
+            if (startTime === 0) {
+                setStartTime(Date.now());
+            }
+            intervalId = setInterval(() => {
+                const currentTime = Date.now();
+                setElapsedTime(currentTime - startTime);
+            }, 1000);
+        } else {
+            clearInterval(intervalId);
+        }
+        return () => clearInterval(intervalId);
+    }, [isTimerRunning, startTime]);
 
-  const select2 = () => {
-    if (showImage2 === true) {
-      //alert("DONE")
-    } else {
-      alert('Try Again!');
-    }
-  };
+    const useNavigate = useNavigation();
 
-  const select3 = () => {
-    if (showImage3 === true) {
-      //alert("DONE")
-    } else {
-      alert('Try Again!');
-    }
-  };
-  const select4 = () => {
-    if (showImage4 === true) {
-      //alert("DONE")
-    } else {
-      alert('Try Again!');
-    }
-  };
-  return (
-    <ImageBackground
-      imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
-      style={[Theme.w100, Theme.h100, Theme.justAlign]}
-      source={require('../assets/img/background/bg_1_1.jpg')}>
-      <Text
-        style={[Theme.fBlack, Theme.f20, Theme.fBold, Theme.txtAlignCenter]}>
-        Click on the animal appearing on the screen
-      </Text>
+    const formatTime = time => {
+        const seconds = Math.floor(time / 1000) % 60;
+        const minutes = Math.floor(time / 1000 / 60);
+        return `${minutes < 10 ? '0' : ''}${minutes}:${
+            seconds < 10 ? '0' : ''
+        }${seconds}`;
+    };
+    const select1 = () => {
+        if (showImage1 === true) {
+        } else {
+            alert('Try Again!');
+        }
+    };
+    const select2 = () => {
+        if (showImage2 === true) {
+        } else {
+            alert('Try Again!');
+        }
+    };
+    const select3 = () => {
+        if (showImage3 === true) {
+        } else {
+            alert('Try Again!');
+        }
+    };
 
-      <View style={[Theme.h5]} />
+    const clickanimaltime = { key : formatTime(elapsedTime)}
 
-      <View style={[Theme.w90, Theme.h80]}>
-        <View
-          style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
-            {showImage1 && (
-              <TouchableOpacity
-                style={[Theme.w100, Theme.h100, Theme.justAlign]}
-                onPress={select1}>
-                <Image
-                  source={require('../assets/img/animals/zebra_2.png')}
-                  style={[Theme.w100, Theme.h100]}
-                />
-              </TouchableOpacity>
-            )}
-          </View>
-          <View style={[Theme.w10]} />
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}></View>
-        </View>
-        <View style={Theme.h3} />
-        <View
-          style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}></View>
-          <View style={[Theme.w10]} />
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
-            {showImage2 && (
-              <TouchableOpacity
-                style={[Theme.w100, Theme.h100, Theme.justAlign]}
-                onPress={select2}>
-                <Image
-                  source={require('../assets/img/animals/zebra_2.png')}
-                  style={[Theme.w100, Theme.h100]}
-                />
-              </TouchableOpacity>
-            )}
-          </View>
-        </View>
-        <View style={Theme.h3} />
-        <View
-          style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
-            {showImage3 && (
-              <TouchableOpacity
-                style={[Theme.w100, Theme.h100, Theme.justAlign]}
-                onPress={select3}>
-                <Image
-                  source={require('../assets/img/animals/zebra_2.png')}
-                  style={[Theme.w100, Theme.h100]}
-                />
-              </TouchableOpacity>
-            )}
-          </View>
-        </View>
-        <View style={Theme.h3} />
-        <View
-          style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
-            {showImage4 && (
-              <TouchableOpacity
-                style={[Theme.w100, Theme.h100, Theme.justAlign]}
-                onPress={select4}>
-                <Image
-                  source={require('../assets/img/animals/zebra_2.png')}
-                  style={[Theme.w100, Theme.h100]}
-                />
-              </TouchableOpacity>
-            )}
-          </View>
-          <View style={[Theme.w10]} />
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}></View>
-        </View>
-      </View>
-    </ImageBackground>
-  );
+    const select4 = () => {
+
+        if (showImage4 === true) {
+            setIsTimerRunning(false);
+            useNavigate.navigate('WellDoneScreen', {data : clickanimaltime});
+            console.log("click animal screen ", );
+        } else {
+            alert('Try Again!');
+        }
+    };
+
+
+    return (
+        <ImageBackground
+            imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
+            style={[Theme.w100, Theme.h100, Theme.justAlign]}
+            source={require('../assets/img/background/bg_1_1.jpg')}>
+            <Text
+                style={[Theme.fBlack, Theme.f20, Theme.fBold, Theme.txtAlignCenter]}>
+                Click on the animal appearing on the screen
+            </Text>
+
+            <View style={[Theme.h5]}/>
+
+            <View style={[Theme.w90, Theme.h80]}>
+                <View
+                    style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
+                    <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
+                        {showImage1 && (
+                            <TouchableOpacity
+                                style={[Theme.w100, Theme.h100, Theme.justAlign]}
+                                onPress={select1}>
+                                <Image
+                                    source={require('../assets/img/animals/zebra_2.png')}
+                                    style={[Theme.w100, Theme.h100]}
+                                />
+                            </TouchableOpacity>
+                        )}
+                    </View>
+                    <View style={[Theme.w10]}/>
+                    <View style={[Theme.w40, Theme.h100, Theme.justAlign]}></View>
+                </View>
+                <View style={Theme.h3}/>
+                <View
+                    style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
+                    <View style={[Theme.w40, Theme.h100, Theme.justAlign]}></View>
+                    <View style={[Theme.w10]}/>
+                    <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
+                        {showImage2 && (
+                            <TouchableOpacity
+                                style={[Theme.w100, Theme.h100, Theme.justAlign]}
+                                onPress={select2}>
+                                <Image
+                                    source={require('../assets/img/animals/zebra_2.png')}
+                                    style={[Theme.w100, Theme.h100]}
+                                />
+                            </TouchableOpacity>
+                        )}
+                    </View>
+                </View>
+                <View style={Theme.h3}/>
+                <View
+                    style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
+                    <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
+                        {showImage3 && (
+                            <TouchableOpacity
+                                style={[Theme.w100, Theme.h100, Theme.justAlign]}
+                                onPress={select3}>
+                                <Image
+                                    source={require('../assets/img/animals/zebra_2.png')}
+                                    style={[Theme.w100, Theme.h100]}
+                                />
+                            </TouchableOpacity>
+                        )}
+                    </View>
+                </View>
+                <View style={Theme.h3}/>
+                <View
+                    style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
+                    <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
+                        {showImage4 && (
+                            <TouchableOpacity
+                                style={[Theme.w100, Theme.h100, Theme.justAlign]}
+                                onPress={select4}>
+                                <Image
+                                    source={require('../assets/img/animals/zebra_2.png')}
+                                    style={[Theme.w100, Theme.h100]}
+                                />
+                            </TouchableOpacity>
+                        )}
+                    </View>
+                    <View style={[Theme.w10]}/>
+                    <View style={[Theme.w40, Theme.h100, Theme.justAlign]}></View>
+                </View>
+            </View>
+        </ImageBackground>
+    );
 };
 
 export default ClickAnimalScreen;

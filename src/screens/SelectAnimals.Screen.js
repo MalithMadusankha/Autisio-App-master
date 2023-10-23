@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import CardComponent from '../components/CardComponent';
+import ClickAnimalScreen from "./ClickAnimal.Screen";
 
 const SelectAnimalsScreen = ({navigation}) => {
   const SCREEN_HEIGHT = Dimensions.get('screen').height;
@@ -51,7 +52,7 @@ const SelectAnimalsScreen = ({navigation}) => {
                   CARD_TITLE={'Bird'}
                   CARD_IMG_STYLE={[Theme.w70, Theme.h70]}
                   CARD_ON_PRESS={() =>
-                    navigation.navigate('TopBottomAnimalScreen')
+                    navigation.navigate('ClickAnimalScreen')
                   }
                   CARD_IMG={require('../assets/img/animals/bird.png')}
                   CARD_BG={[Theme.bgMain3, Theme.borderRadius20]}
