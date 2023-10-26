@@ -87,7 +87,7 @@ const AudioAttentionScreen = ({navigation}) => {
       setShowImage8(false);
       navigation.navigate('audioReportSummaryScreen');
     }, 31000);
-  }, []);
+  }, []); // eslint-disable-line
 
   useEffect(() => {
     async function getPermission() {

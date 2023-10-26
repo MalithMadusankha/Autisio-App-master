@@ -226,6 +226,9 @@ const AxTheme = StyleSheet.create({
   ml7: {
     marginLeft: '7%',
   },
+  mr5: {
+    marginRight: '5%',
+  },
 
   bgWhite: {
     backgroundColor: '#ffffff',

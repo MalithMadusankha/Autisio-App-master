@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Theme from '../assets/theme/AxTheme';
 import GameCardComponent from '../components/GameCardComponent';
+import PlayCardComponent from '../components/PlayCardComponent';
 
 const InstuctionScreen = ({navigation}) => {
   return (
@@ -69,12 +70,13 @@ const InstuctionScreen = ({navigation}) => {
               GAME_IMG={require('../assets/img/animals/rabbit-removebg-preview.png')}
             />
 
-            <GameCardComponent
-              GAME_TITLE={'Now Play Game Click to Start.'}
-              GAME_STYLE={[Theme.w70, Theme.h55]}
-              GAME_IMG={require('../assets/img/others/boy-removebg-preview.png')}
+            <PlayCardComponent
+              GAME_STYLE={[Theme.w90, Theme.h90]}
+              GAME_IMG={require('../assets/img/play.gif')}
               GAME_ON_PRESS={() => navigation.navigate('audioAttentionGame')}
             />
+
+            <View style={[Theme.mb10]} />
           </ScrollView>
         </SafeAreaView>
       </View>

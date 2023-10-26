@@ -9,24 +9,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-const ReportSummaryScreen = () => {
+const ReportSummaryScreen = ({route}) => {
+  const {data, avg, isWin} = route.params;
+  const navigation = useNavigation();
   return (
     <ImageBackground
       imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
       style={[Theme.w100, Theme.h100, Theme.justAlign]}
       source={require('../assets/img/background/bg_3.jpg')}>
       <View style={[Theme.w100, Theme.h70, Theme.justAlign]}>
-        <View style={[Theme.w100, Theme.h5, Theme.flexDirRow]}>
-          <TouchableOpacity
-            style={[Theme.w15, Theme.h100, Theme.justAlign, Theme.ml2]}>
-            <Image
-              source={require('../assets/icons/angle-small-left.png')}
-              style={[Theme.w60, Theme.h53]}
-            />
-          </TouchableOpacity>
-        </View>
-
         <View style={[Theme.w90, Theme.h20, Theme.flexDirRow]}>
           <View style={[Theme.w10]} />
           <View style={[Theme.w90, Theme.h100, Theme.justifyCenter]}>
@@ -35,17 +28,44 @@ const ReportSummaryScreen = () => {
             </Text>
           </View>
         </View>
+
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Time taken by average normal child for a single response -xx seconds
+            Time taken by average normal child for a single response - {avg} s
           </Text>
         </View>
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Time taken by your child for a single response -xx seconds
+            Time taken by your child for a single response - {data} s
           </Text>
         </View>
-        <View style={[Theme.h20]} />
+
+        {data < avg ? (
+          <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
+            <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+              Your child is very good
+            </Text>
+          </View>
+        ) : data < avg + 11 ? (
+          <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
+            <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+              Your child is good, Try to improve
+            </Text>
+          </View>
+        ) : (
+          <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
+            <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+              Your child need more attention
+            </Text>
+          </View>
+        )}
+
+        <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
+          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+            You have
+            {isWin ? ' WIN game' : ' Lost game'}.
+          </Text>
+        </View>
       </View>
 
       <View style={[Theme.h10]} />
@@ -60,8 +80,7 @@ const ReportSummaryScreen = () => {
             Theme.borderRadius20,
             Theme.justAlign,
           ]}
-          onPress={() =>  useNavigate.navigate('SelectAnimalsScreen')}
-        >
+          onPress={() => navigation.navigate('AttentionScreen')}>
           <Text
             style={[
               Theme.fWhite,

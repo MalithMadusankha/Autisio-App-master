@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Theme from '../assets/theme/AxTheme';
 import GameCardComponent from '../components/GameCardComponent';
+import ReportCardComponent from '../components/ReportCardComponent';
 
 const AttentionScreen = ({navigation}) => {
   return (
@@ -43,7 +44,7 @@ const AttentionScreen = ({navigation}) => {
               GAME_TITLE={'Selective Attention Games'}
               GAME_STYLE={[Theme.w80, Theme.h60]}
               GAME_IMG={require('../assets/img/animals/dog.png')}
-              GAME_ON_PRESS={() => navigation.navigate('GameLevel2Screen')}
+              GAME_ON_PRESS={() => navigation.navigate('GameLevelsScreen')}
             />
 
             <GameCardComponent
@@ -59,39 +60,24 @@ const AttentionScreen = ({navigation}) => {
               GAME_TITLE={'Sustained Attention Games'}
               GAME_STYLE={[Theme.w90, Theme.h40]}
               GAME_IMG={require('../assets/img/animals/fish.jpg')}
-              GAME_ON_PRESS={() => navigation.navigate('SelectAnimalsScreen')}
-            />
-
-            <GameCardComponent
-              GAME_TITLE={'Shifting Attention Games'}
-              GAME_STYLE={[Theme.w90, Theme.h60]}
-              GAME_IMG={require('../assets/img/animals/rabbit-removebg-preview.png')}
-            />
-
-            <GameCardComponent
-              GAME_TITLE={'Gaze Analysing Games'}
-              GAME_STYLE={[Theme.w70, Theme.h55]}
-              GAME_IMG={require('../assets/img/others/boy-removebg-preview.png')}
+              GAME_ON_PRESS={() =>
+                navigation.navigate('SelectAnimalsSusScreen')
+              }
             />
 
             <GameCardComponent
               GAME_TITLE={'Auditory Attention'}
               GAME_STYLE={[Theme.w70, Theme.h55]}
               GAME_IMG={require('../assets/img/others/boy-removebg-preview.png')}
-            />
-
-            <GameCardComponent
-              GAME_TITLE={'Audio Attention Games'}
-              GAME_STYLE={[Theme.w80, Theme.h60]}
-              GAME_IMG={require('../assets/img/animal_gifs/monkey_jump.gif')}
               GAME_ON_PRESS={() => navigation.navigate('instructionsScreen')}
             />
-            <GameCardComponent
+            <ReportCardComponent
               GAME_TITLE={'Report Summary'}
               GAME_STYLE={[Theme.w80, Theme.h60]}
-              GAME_IMG={require('../assets/img/animals/cartoon-cat.webp')}
+              GAME_IMG={require('../assets/img/report.png')}
               GAME_ON_PRESS={() => navigation.navigate('reportSummaryScreen3')}
             />
+            <View style={[Theme.mb10]} />
           </ScrollView>
         </SafeAreaView>
       </View>

@@ -9,18 +9,20 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {useNavigation, useRoute} from "@react-navigation/native";
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 const WellDoneScreen = () => {
+  const route = useRoute();
+  const data = route.params?.data;
+  const isWin = route.params?.isWin;
+  const avg = route.params?.avg;
 
-    const route = useRoute();
-    const receivedData = route.params?.data;
+  useEffect(() => {
+    console.log(data);
+    console.log(JSON.stringify(isWin));
+  }, []);
 
-    useEffect(() => {
-        console.log(JSON.stringify(receivedData))
-    }, []);
-
-    const useNavigate = useNavigation();
+  const useNavigate = useNavigation();
 
   return (
     <View style={[Theme.container, Theme.bgMain1, Theme.w100, Theme.h100]}>
@@ -75,9 +77,9 @@ const WellDoneScreen = () => {
               Theme.borderRadius20,
               Theme.justAlign,
             ]}
-
-            onPress={() =>  useNavigate.navigate('ReportSummaryScreen')}
-          >
+            onPress={() =>
+              useNavigate.navigate('ReportSummaryScreen', {data, avg, isWin})
+            }>
             <Text
               style={[
                 Theme.fWhite,

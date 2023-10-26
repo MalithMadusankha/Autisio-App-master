@@ -18,6 +18,8 @@ import AudioAttentionScreen from '../screens/AudioAttention.Screen';
 import InstuctionScreen from '../screens/Instuction.Screen';
 import AudioReportSummaryScreen from '../screens/AudioReportSummary.Screen';
 import ReportSummaryScreen3 from '../screens/ReportSummary.Screen3';
+import SelectAnimalsSusScreen from '../screens/SelectAnimalsSus.Screen';
+import GameLevelsScreen from '../screens/GameLevels.Screen';
 
 const RootRoutes = () => {
   const Stack = createStackNavigator();
@@ -31,13 +33,18 @@ const RootRoutes = () => {
           cardOverlayEnabled: false,
           gestureDirection: 'horizontal',
         })}>
-        {/*<Stack.Screen name="TermsScreen" component={TermsScreen} />*/}
+        <Stack.Screen name="TermsScreen" component={TermsScreen} />
         <Stack.Screen
           name="SelectAnimalsScreen"
           component={SelectAnimalsScreen}
         />
+        <Stack.Screen
+          name="SelectAnimalsSusScreen"
+          component={SelectAnimalsSusScreen}
+        />
         <Stack.Screen name="AttentionScreen" component={AttentionScreen} />
         <Stack.Screen name="ClickAnimalScreen" component={ClickAnimalScreen} />
+        <Stack.Screen name="GameLevelsScreen" component={GameLevelsScreen} />
         <Stack.Screen name="GameLevel1Screen" component={GameLevel1Screen} />
         <Stack.Screen name="GameLevel2Screen" component={GameLevel2Screen} />
         <Stack.Screen name="GameLevel3Screen" component={GameLevel3Screen} />

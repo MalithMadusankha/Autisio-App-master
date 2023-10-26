@@ -53,8 +53,6 @@ const AudioReportSummaryScreen = () => {
         <View style={[Theme.h20]} />
       </View>
 
-      <View style={[Theme.h10]} />
-
       <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
         <TouchableOpacity
           style={[

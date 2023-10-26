@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Theme from '../assets/theme/AxTheme';
 import React from 'react';
 
-const GameCardComponent = ({
+const LavelCardComponent = ({
   GAME_ON_PRESS,
   GAME_TITLE,
   GAME_IMG,
@@ -22,7 +22,7 @@ const GameCardComponent = ({
           ]}
           onPress={GAME_ON_PRESS}>
           <View style={[Theme.w10]} />
-          <View style={[Theme.w60, Theme.h100, Theme.justAlign]}>
+          <View style={[Theme.w50, Theme.h100, Theme.justAlign]}>
             <Text
               style={[
                 Theme.fBlack,
@@ -36,6 +36,7 @@ const GameCardComponent = ({
           <View style={[Theme.w30, Theme.h100, Theme.justAlign]}>
             <Image source={GAME_IMG} style={GAME_STYLE} />
           </View>
+          <View style={[Theme.w10]} />
         </TouchableOpacity>
       </View>
     </>
@@ -53,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GameCardComponent;
+export default LavelCardComponent;

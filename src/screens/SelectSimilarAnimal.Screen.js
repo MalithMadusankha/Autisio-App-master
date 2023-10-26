@@ -6,54 +6,113 @@ import {
   Image,
   Text,
   StyleSheet,
-  Alert,
+  ToastAndroid,
 } from 'react-native';
 import Theme from '../assets/theme/AxTheme';
+import {LogBox} from 'react-native';
 
-const SelectSimilarAnimalScreen = () => {
+let cow = false;
+let cat = false;
+let dog = false;
+
+let imageUrls = [
+  require('../assets/img/animals/cartoon-cat.webp'),
+  require('../assets/img/animals/cow.jpg'),
+  require('../assets/img/animals/dog.png'),
+];
+
+const imageUrlsChose = [
+  require('../assets/img/animals/cartoon-cat.webp'),
+  require('../assets/img/animals/cow.jpg'),
+  require('../assets/img/animals/dog.png'),
+];
+
+const SelectSimilarAnimalScreen = ({navigation}) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
-  const imageUrls = [
-    require('../assets/img/animals/cartoon-cat.webp'),
-    require('../assets/img/animals/cow.jpg'),
-    require('../assets/img/animals/dog.png'),
-  ];
+  const [intArr, setIntArr] = useState([]);
+  const [startTime, setStartTime] = useState(Date.now());
 
   useEffect(() => {
+    // console.log('================ Start ====================');
+    // console.log('startTime', startTime);
     Shuffle();
     timeSchedule();
-  }, []);
+  }, []); // eslint-disable-line
 
   const Shuffle = () => {
     const randomIndex = Math.floor(Math.random() * imageUrls.length);
     const randomImage = imageUrls[randomIndex];
+    // console.log('randomImage', randomImage);
+    // console.log('imageUrls', imageUrls);
     setSelectedImage(randomImage);
   };
 
   const timeSchedule = () => {
     const intervalId = setInterval(() => {
-      setSelectedImageIndex(prevIndex => (prevIndex + 1) % imageUrls.length);
+      setSelectedImageIndex(
+        prevIndex => (prevIndex + 1) % imageUrlsChose.length,
+      );
     }, 10000);
     return () => clearInterval(intervalId);
   };
 
   const checkClickImage = () => {
-    if (selectedImage === 5 && selectedImageIndex === 2) {
+    // console.log('selectedImage', selectedImage);
+    // console.log('selectedImageIndex', selectedImageIndex);
+    // console.log('imageUrlsChose', imageUrlsChose);
+    // console.log(selectedImage, imageUrlsChose[1], 'cow', selectedImageIndex, 1);
+    // console.log(selectedImage, imageUrlsChose[2], 'dog', selectedImageIndex, 2);
+    // console.log(selectedImage, imageUrlsChose[0], 'cat', selectedImageIndex, 0);
+
+    if (selectedImage === imageUrlsChose[2] && selectedImageIndex === 2) {
+      imageUrls.splice(2, 1);
+      dog = true;
+      console.log('dog');
+      ToastAndroid.show('Matched!', ToastAndroid.SHORT);
       Shuffle();
-      Alert.alert('You Won', 'Completed!');
+    } else if (
+      selectedImage === imageUrlsChose[1] &&
+      selectedImageIndex === 1
+    ) {
+      imageUrls.splice(1, 1);
+      console.log('cow');
+      cow = true;
+      ToastAndroid.show('Matched!', ToastAndroid.SHORT);
+      Shuffle();
+    } else if (
+      selectedImage === imageUrlsChose[0] &&
+      selectedImageIndex === 0
+    ) {
+      imageUrls.splice(0, 1);
+      console.log('cat');
+      cat = true;
+      ToastAndroid.show('Matched!', ToastAndroid.SHORT);
+      Shuffle();
     } else {
-      if (selectedImage === 4 && selectedImageIndex === 1) {
-        Shuffle();
-        Alert.alert('You Won', 'Completed!');
-      } else {
-        if (selectedImage === 3 && selectedImageIndex === 0) {
-          Shuffle();
-          Alert.alert('You Won', 'Completed!');
-        } else {
-          alert('please try again');
-        }
-      }
+      ToastAndroid.show('Please try again', ToastAndroid.SHORT);
+    }
+    // console.log(`cow : ${cow} && cat : ${cat} && dog : ${dog}`);
+    // console.log(`condition : ${cow && cat && dog}`);
+    if (cow && cat && dog) {
+      const currentTime = Date.now();
+      cow = false;
+      cat = false;
+      dog = false;
+
+      imageUrls = [
+        require('../assets/img/animals/cartoon-cat.webp'),
+        require('../assets/img/animals/cow.jpg'),
+        require('../assets/img/animals/dog.png'),
+      ];
+
+      const diff = currentTime - startTime;
+      console.log('diff', diff);
+      navigation.navigate('WellDoneScreen', {
+        data: Math.floor(diff / 1000),
+        avg: 62,
+        isWin: true,
+      });
     }
   };
 
@@ -107,7 +166,7 @@ const SelectSimilarAnimalScreen = () => {
           style={[Theme.w100, Theme.h100, Theme.justAlign]}
           onPress={checkClickImage}>
           <Image
-            source={imageUrls[selectedImageIndex]}
+            source={imageUrlsChose[selectedImageIndex]}
             style={{width: 200, height: 200}}
             resizeMode="contain"
           />

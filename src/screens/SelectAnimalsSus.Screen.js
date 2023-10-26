@@ -13,7 +13,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import CardComponent from '../components/CardComponent';
 import ClickAnimalScreen from './ClickAnimal.Screen';
 
-const SelectAnimalsScreen = ({navigation}) => {
+const SelectAnimalsSusScreen = ({navigation}) => {
   const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
   return (
@@ -53,7 +53,7 @@ const SelectAnimalsScreen = ({navigation}) => {
                   CARD_TITLE={'Bird'}
                   CARD_IMG_STYLE={[Theme.w70, Theme.h70]}
                   CARD_ON_PRESS={() =>
-                    navigation.navigate('ClickAnimalScreen', {
+                    navigation.navigate('TopBottomAnimalScreen', {
                       animal: 'b',
                     })
                   }
@@ -71,7 +71,7 @@ const SelectAnimalsScreen = ({navigation}) => {
                   CARD_IMG={require('../assets/img/animals/dog.png')}
                   CARD_BG={[Theme.bgMain2, Theme.borderRadius20]}
                   CARD_ON_PRESS={() =>
-                    navigation.navigate('ClickAnimalScreen', {
+                    navigation.navigate('TopBottomAnimalScreen', {
                       animal: 'd',
                     })
                   }
@@ -87,7 +87,7 @@ const SelectAnimalsScreen = ({navigation}) => {
                   CARD_IMG={require('../assets/img/animals/monkey.png')}
                   CARD_BG={[Theme.bgMain4, Theme.borderRadius20]}
                   CARD_ON_PRESS={() =>
-                    navigation.navigate('ClickAnimalScreen', {
+                    navigation.navigate('TopBottomAnimalScreen', {
                       animal: 'm',
                     })
                   }
@@ -103,7 +103,7 @@ const SelectAnimalsScreen = ({navigation}) => {
                   CARD_IMG={require('../assets/img/animals/zebra.png')}
                   CARD_BG={[Theme.bgMain5, Theme.borderRadius20]}
                   CARD_ON_PRESS={() =>
-                    navigation.navigate('ClickAnimalScreen', {
+                    navigation.navigate('TopBottomAnimalScreen', {
                       animal: 'z',
                     })
                   }
@@ -125,4 +125,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SelectAnimalsScreen;
+export default SelectAnimalsSusScreen;

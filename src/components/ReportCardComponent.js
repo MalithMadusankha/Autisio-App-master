@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Theme from '../assets/theme/AxTheme';
 import React from 'react';
 
-const GameCardComponent = ({
+const ReportCardComponent = ({
   GAME_ON_PRESS,
   GAME_TITLE,
   GAME_IMG,
@@ -18,7 +18,7 @@ const GameCardComponent = ({
             Theme.h100,
             Theme.borderRadius20,
             Theme.flexDirRow,
-            Theme.bgMain3,
+            Theme.bgMain5,
           ]}
           onPress={GAME_ON_PRESS}>
           <View style={[Theme.w10]} />
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GameCardComponent;
+export default ReportCardComponent;
