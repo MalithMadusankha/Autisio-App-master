@@ -20,6 +20,9 @@ import AudioReportSummaryScreen from '../screens/AudioReportSummary.Screen';
 import ReportSummaryScreen3 from '../screens/ReportSummary.Screen3';
 import SelectAnimalsSusScreen from '../screens/SelectAnimalsSus.Screen';
 import GameLevelsScreen from '../screens/GameLevels.Screen';
+import VideoRecorder from '../components/video/VideoRecorder';
+import WelcomeScreen from '../screens/Welcome.Screen';
+import GatherDataScreen from '../screens/GatherData.Screen';
 
 const RootRoutes = () => {
   const Stack = createStackNavigator();
@@ -33,7 +36,9 @@ const RootRoutes = () => {
           cardOverlayEnabled: false,
           gestureDirection: 'horizontal',
         })}>
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
         <Stack.Screen name="TermsScreen" component={TermsScreen} />
+        <Stack.Screen name="GatherDataScreen" component={GatherDataScreen} />
         <Stack.Screen
           name="SelectAnimalsScreen"
           component={SelectAnimalsScreen}
@@ -78,6 +83,7 @@ const RootRoutes = () => {
           name="reportSummaryScreen3"
           component={ReportSummaryScreen3}
         />
+        <Stack.Screen name="videoRecorder" component={VideoRecorder} />
       </Stack.Navigator>
     </NavigationContainer>
   );

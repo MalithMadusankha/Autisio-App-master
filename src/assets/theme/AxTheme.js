@@ -4,6 +4,9 @@ const AxTheme = StyleSheet.create({
   bgMain0: {
     backgroundColor: '#FFAD4A',
   },
+  bgWelCome: {
+    backgroundColor: '#fae8ef',
+  },
 
   bgMain1: {
     backgroundColor: '#393939',

@@ -1,7 +1,6 @@
 import React from 'react';
 import Theme from '../assets/theme/AxTheme';
 import {
-  Dimensions,
   Image,
   ImageBackground,
   StyleSheet,
@@ -10,7 +9,9 @@ import {
   View,
 } from 'react-native';
 
-const AudioReportSummaryScreen = () => {
+const AudioReportSummaryScreen = ({navigation, route}) => {
+  const {resArr} = route.params;
+
   return (
     <ImageBackground
       imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
@@ -37,17 +38,24 @@ const AudioReportSummaryScreen = () => {
         </View>
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Child respond to the father's voice - Well Done
+            Child respond to the father's voice -{' '}
+            {resArr[0] > 0 ? 'Well Done ' : 'Not Good'}
           </Text>
         </View>
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Child respond to the mother's voice - Well Done
+            Child respond to the mother's voice -{' '}
+            {resArr[1] < 0 ? 'Well Done ' : 'Not Good'}
           </Text>
         </View>
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Finaly child has good attention to mother and father's voice
+            {resArr[0] > 0 && resArr[1] < 0
+              ? "Finaly child has good attention to mother and father's voice"
+              : null}
+            {resArr[0] <= 0 && resArr[1] >= 0
+              ? "Finaly child dose not have good attention to mother and father's voice"
+              : null}
           </Text>
         </View>
         <View style={[Theme.h20]} />
@@ -55,6 +63,7 @@ const AudioReportSummaryScreen = () => {
 
       <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
         <TouchableOpacity
+          onPress={() => navigation.navigate('AttentionScreen')}
           style={[
             Theme.w60,
             Theme.h38,

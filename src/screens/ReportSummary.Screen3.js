@@ -8,14 +8,14 @@ import {
   View,
 } from 'react-native';
 
-const ReportSummaryScreen3 = () => {
+const ReportSummaryScreen3 = ({navigation}) => {
   return (
     <ImageBackground
       imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
       style={[Theme.w100, Theme.h100, Theme.justAlign]}
       source={require('../assets/img/background/bg_3.jpg')}>
       <View style={[Theme.w100, Theme.h70, Theme.justAlign, Theme.mt10]}>
-        <View style={[Theme.w100, Theme.h5, Theme.flexDirRow]}>
+        <View style={[Theme.w100, Theme.h10, Theme.flexDirRow]}>
           <TouchableOpacity
             style={[Theme.w15, Theme.h100, Theme.justAlign, Theme.ml2]}>
             <Image
@@ -32,6 +32,7 @@ const ReportSummaryScreen3 = () => {
             </Text>
           </View>
         </View>
+        <View style={[Theme.h10]} />
         <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
             Focused Attention Games ==> Good
@@ -52,26 +53,13 @@ const ReportSummaryScreen3 = () => {
             Sustained Attention Games ==> Very Good
           </Text>
         </View>
-        <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
-          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Shifting Attention Games ==> Very Bad
-          </Text>
-        </View>
-        <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
-          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Gaze Analysing Games ==> Bad
-          </Text>
-        </View>
+
         <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
             Auditory Attention ==> Very Good
           </Text>
         </View>
-        <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
-          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Audio Attention Games ==> Very Good
-          </Text>
-        </View>
+
         <View style={[Theme.w90, Theme.h10, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
             Finaly, Child needs more attention. Helth is good.
@@ -82,6 +70,7 @@ const ReportSummaryScreen3 = () => {
 
       <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
         <TouchableOpacity
+          onPress={() => navigation.navigate('AttentionScreen')}
           style={[
             Theme.w60,
             Theme.h38,
