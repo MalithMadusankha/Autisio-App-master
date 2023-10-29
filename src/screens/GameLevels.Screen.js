@@ -31,6 +31,7 @@ const GameLevelsScreen = ({navigation}) => {
             showsVerticalScrollIndicator={false}>
             <LavelCardComponent
               GAME_TITLE={'Lavel 1'}
+              LEVEL_LIMIT={'This leve for age 5'}
               GAME_STYLE={[Theme.w100, Theme.h50]}
               GAME_IMG={require('../assets/icons/butterfly.png')}
               GAME_ON_PRESS={() => navigation.navigate('GameLevel1Screen')}
@@ -38,6 +39,7 @@ const GameLevelsScreen = ({navigation}) => {
 
             <LavelCardComponent
               GAME_TITLE={'Lavel 2'}
+              LEVEL_LIMIT={'This leve for age 6'}
               GAME_STYLE={[Theme.w100, Theme.h60]}
               GAME_IMG={require('../assets/icons/bee.png')}
               GAME_ON_PRESS={() => navigation.navigate('GameLevel2Screen')}
@@ -46,6 +48,7 @@ const GameLevelsScreen = ({navigation}) => {
             <LavelCardComponent
               GAME_TITLE={'Lavel 3'}
               GAME_STYLE={[Theme.w100, Theme.h60]}
+              LEVEL_LIMIT={'This leve for age 7'}
               GAME_IMG={require('../assets/icons/parrot.png')}
               GAME_ON_PRESS={() => navigation.navigate('GameLevel3Screen')}
             />

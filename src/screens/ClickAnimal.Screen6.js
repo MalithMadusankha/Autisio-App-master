@@ -16,7 +16,7 @@ import AnimalImageComponet from '../components/AnimalImageComponet';
 import CreateNewGame from '../service/GameService';
 import {ReadUser} from '../constants/constants';
 
-const ClickAnimalScreen = ({route}) => {
+const ClickAnimalScreen6 = ({route}) => {
   const {animal} = route.params;
   const [showImage1, setShowImage1] = useState(true);
   const [showImage2, setShowImage2] = useState(false);
@@ -60,26 +60,27 @@ const ClickAnimalScreen = ({route}) => {
   };
 
   useEffect(() => {
+    console.log('ClickAnimalScreen6');
     setTimeout(() => {
       setShowImage1(false);
       setShowImage2(true);
-    }, 5000);
+    }, 4000);
 
     setTimeout(() => {
       setShowImage2(false);
       setShowImage3(true);
-    }, 8000);
+    }, 7000);
 
     setTimeout(() => {
       setShowImage3(false);
       setShowImage4(true);
-    }, 11000);
+    }, 10000);
 
     const timeId = setTimeout(() => {
       setShowImage4(false);
       setisControl(true);
       setIsNav(true);
-    }, 14000);
+    }, 13000);
     return () => {
       clearTimeout(timeId);
     };
@@ -233,4 +234,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ClickAnimalScreen;
+export default ClickAnimalScreen6;

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Theme from '../assets/theme/AxTheme';
+import ChildInfoForm from '../components/ChildInfoForm';
 
 const GatherDataScreen = ({navigation}) => {
   const SCREEN_WIDTH = Dimensions.get('screen').width;
@@ -17,10 +18,7 @@ const GatherDataScreen = ({navigation}) => {
 
   return (
     <View style={[Theme.container, Theme.bgWelCome, Theme.w100, Theme.h100]}>
-      <Image
-        source={require('../assets/img/logo_t.png')}
-        style={{width: SCREEN_WIDTH, height: SCREEN_HEIGHT * height}}
-      />
+      <ChildInfoForm navigation={navigation} />
     </View>
   );
 };

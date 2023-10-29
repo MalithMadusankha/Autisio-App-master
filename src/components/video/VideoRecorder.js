@@ -46,8 +46,8 @@ const VideoRecorder = ({resArr, setResArr, setIsLoading, navigation}) => {
       })
       .then(data => {
         // 'data' is the parsed JSON response
-        // console.log(parent);
-        // console.log('mSG == ', data.msg);
+        console.log(parent);
+        console.log('mSG == ', data.msg);
         locArr.push(data.msg);
         setResArr(locArr);
         return data;

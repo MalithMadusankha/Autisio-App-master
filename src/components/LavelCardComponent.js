@@ -5,6 +5,7 @@ import React from 'react';
 const LavelCardComponent = ({
   GAME_ON_PRESS,
   GAME_TITLE,
+  LEVEL_LIMIT,
   GAME_IMG,
   GAME_STYLE,
 }) => {
@@ -31,6 +32,15 @@ const LavelCardComponent = ({
                 Theme.txtAlignCenter,
               ]}>
               {GAME_TITLE}
+            </Text>
+            <Text
+              style={[
+                Theme.fBlack,
+                Theme.f14,
+                Theme.fBold,
+                Theme.txtAlignCenter,
+              ]}>
+              {LEVEL_LIMIT}
             </Text>
           </View>
           <View style={[Theme.w30, Theme.h100, Theme.justAlign]}>

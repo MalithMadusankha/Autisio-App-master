@@ -233,6 +233,35 @@ const AxTheme = StyleSheet.create({
     marginRight: '5%',
   },
 
+  p1: {
+    padding: '1%',
+  },
+
+  p2: {
+    padding: '2%',
+  },
+
+  p3: {
+    padding: '3%',
+  },
+
+  p4: {
+    padding: '4%',
+  },
+
+  px1: {
+    paddingHorizontal: '1%',
+  },
+  px2: {
+    paddingHorizontal: '2%',
+  },
+  px3: {
+    paddingHorizontal: '3%',
+  },
+  px6: {
+    paddingHorizontal: '6%',
+  },
+
   bgWhite: {
     backgroundColor: '#ffffff',
   },
@@ -267,6 +296,9 @@ const AxTheme = StyleSheet.create({
   bgBlack: {
     backgroundColor: '#000000',
   },
+  bgBlackShade: {
+    backgroundColor: '#3b3838c5',
+  },
 
   bgMainRed: {
     backgroundColor: '#EB3B5A',
@@ -278,6 +310,10 @@ const AxTheme = StyleSheet.create({
 
   fWhite: {
     color: '#ffffff',
+  },
+
+  fGreen: {
+    color: '#18d928',
   },
 
   fRed: {
