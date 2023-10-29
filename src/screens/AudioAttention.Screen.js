@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {Camera, useCameraDevices} from 'react-native-vision-camera';
+
 import {
   ImageBackground,
   Text,
@@ -7,10 +7,11 @@ import {
   View,
   Image,
   Dimensions,
-  Linking,
+  ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
 import Theme from '../assets/theme/AxTheme';
+import VideoRecorder from '../components/video/VideoRecorder';
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
 const SCREEN_WIDTH = Dimensions.get('screen').width;
@@ -26,77 +27,59 @@ const AudioAttentionScreen = ({navigation}) => {
   const [showImage8, setShowImage8] = useState(false);
   const [speakFather, setSpeakFather] = useState(false);
   const [speakMother, setSpeakMother] = useState(false);
-  const camera = useRef(null);
-  const devices = useCameraDevices();
-  const device = devices.front;
 
-  const [showCamera, setShowCamera] = useState(true);
-  const [videoPath, setVideoPath] = useState(null);
-  const [permtion, setPermtion] = useState(false);
-  const [imageSource, setImageSource] = useState(null);
-
-  const capturePhoto = async () => {
-    if (camera.current !== null) {
-      const photo = await camera.current.takePhoto({});
-      setImageSource(photo.path);
-      setShowCamera(false);
-      console.log(photo.path);
-    }
-  };
+  const [resArr, setResArr] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setShowImage1(false);
       setShowImage2(true);
+      setSpeakFather(true);
     }, 5000);
 
     setTimeout(() => {
       setShowImage2(false);
       setShowImage3(true);
-      setSpeakFather(true);
-    }, 8000);
+      setSpeakFather(false);
+    }, 11000);
 
     setTimeout(() => {
       setShowImage3(false);
       setShowImage4(true);
-    }, 11000);
+    }, 16000);
 
     setTimeout(() => {
       setShowImage4(false);
       setShowImage5(true);
-      setSpeakFather(false);
-    }, 14000);
+      setSpeakMother(true);
+    }, 21000);
     setTimeout(() => {
       setShowImage5(false);
       setShowImage6(true);
-      setSpeakMother(true);
-    }, 20000);
+      setSpeakMother(false);
+    }, 27000);
 
     setTimeout(() => {
       setShowImage6(false);
       setShowImage7(true);
-    }, 24000);
+    }, 32000);
 
     setTimeout(() => {
       setShowImage7(false);
       setShowImage8(true);
-      setSpeakMother(false);
-    }, 28000);
+    }, 37000);
 
     setTimeout(() => {
       setShowImage8(false);
-      navigation.navigate('audioReportSummaryScreen');
-    }, 31000);
+      setIsLoading(true);
+    }, 40000);
+    setTimeout(() => {
+      if (!isLoading) {
+        navigation.navigate('audioReportSummaryScreen', {resArr});
+      }
+    }, 45000);
   }, []); // eslint-disable-line
-
-  useEffect(() => {
-    async function getPermission() {
-      const permission = await Camera.requestCameraPermission();
-      console.log(`Camera permission status: ${permission}`);
-      if (permission === 'denied') await Linking.openSettings();
-    }
-    getPermission();
-  }, []);
 
   const select1 = () => {
     if (showImage1 === true) {
@@ -144,9 +127,9 @@ const AudioAttentionScreen = ({navigation}) => {
           Speak Mother . . . .
         </Text>
       )}
+      {isLoading ? <ActivityIndicator size="large" color="#0000ff" /> : null}
 
-      <View style={[Theme.h5]} />
-      <View style={[Theme.w90, Theme.h70]}>
+      <View style={[Theme.w75, Theme.h70]}>
         <View
           style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
           <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
@@ -428,16 +411,13 @@ const AudioAttentionScreen = ({navigation}) => {
           </View>
         </View>
       </View>
-      <View style={[Theme.h15, Theme.w30, styles.cameraContainer]}>
-        {device && (
-          <Camera
-            ref={camera}
-            style={StyleSheet.absoluteFill}
-            device={device}
-            isActive={showCamera}
-            photo={true}
-          />
-        )}
+      <View style={[Theme.h20, Theme.w30, styles.cameraContainer, Theme.mr5]}>
+        <VideoRecorder
+          resArr={resArr}
+          setResArr={setResArr}
+          setIsLoading={setIsLoading}
+          navigation={navigation}
+        />
       </View>
     </ImageBackground>
   );
@@ -452,6 +432,10 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
   },
   cameraContainer: {position: 'absolute', bottom: 100, right: 10},
+  body: {
+    width: 100,
+    height: 200,
+  },
 });
 
 export default AudioAttentionScreen;

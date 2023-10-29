@@ -20,6 +20,11 @@ import AudioReportSummaryScreen from '../screens/AudioReportSummary.Screen';
 import ReportSummaryScreen3 from '../screens/ReportSummary.Screen3';
 import SelectAnimalsSusScreen from '../screens/SelectAnimalsSus.Screen';
 import GameLevelsScreen from '../screens/GameLevels.Screen';
+import VideoRecorder from '../components/video/VideoRecorder';
+import WelcomeScreen from '../screens/Welcome.Screen';
+import GatherDataScreen from '../screens/GatherData.Screen';
+import ClickAnimalScreen6 from '../screens/ClickAnimal.Screen6';
+import ClickAnimalScreen7 from '../screens/ClickAnimal.Screen7';
 
 const RootRoutes = () => {
   const Stack = createStackNavigator();
@@ -33,7 +38,9 @@ const RootRoutes = () => {
           cardOverlayEnabled: false,
           gestureDirection: 'horizontal',
         })}>
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
         <Stack.Screen name="TermsScreen" component={TermsScreen} />
+        <Stack.Screen name="GatherDataScreen" component={GatherDataScreen} />
         <Stack.Screen
           name="SelectAnimalsScreen"
           component={SelectAnimalsScreen}
@@ -43,7 +50,16 @@ const RootRoutes = () => {
           component={SelectAnimalsSusScreen}
         />
         <Stack.Screen name="AttentionScreen" component={AttentionScreen} />
-        <Stack.Screen name="ClickAnimalScreen" component={ClickAnimalScreen} />
+        <Stack.Screen name="ClickAnimalScreen5" component={ClickAnimalScreen} />
+        <Stack.Screen
+          name="ClickAnimalScreen6"
+          component={ClickAnimalScreen6}
+        />
+        <Stack.Screen
+          name="ClickAnimalScreen7"
+          component={ClickAnimalScreen7}
+        />
+
         <Stack.Screen name="GameLevelsScreen" component={GameLevelsScreen} />
         <Stack.Screen name="GameLevel1Screen" component={GameLevel1Screen} />
         <Stack.Screen name="GameLevel2Screen" component={GameLevel2Screen} />
@@ -78,6 +94,7 @@ const RootRoutes = () => {
           name="reportSummaryScreen3"
           component={ReportSummaryScreen3}
         />
+        <Stack.Screen name="videoRecorder" component={VideoRecorder} />
       </Stack.Navigator>
     </NavigationContainer>
   );

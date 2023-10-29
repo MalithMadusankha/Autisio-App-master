@@ -4,7 +4,7 @@ import {
   Text,
   StyleSheet,
   View,
-  Image,
+  Button,
   Dimensions,
   Animated,
   TouchableOpacity,
@@ -13,6 +13,8 @@ import {
 import Theme from '../assets/theme/AxTheme';
 import {useNavigation} from '@react-navigation/native';
 import AnimalImageComponet from '../components/AnimalImageComponet';
+import CreateNewGame from '../service/GameService';
+import {ReadUser} from '../constants/constants';
 
 const ClickAnimalScreen = ({route}) => {
   const {animal} = route.params;
@@ -24,14 +26,40 @@ const ClickAnimalScreen = ({route}) => {
   const [isClick2, setIsClick2] = useState(false);
   const [isClick3, setIsClick3] = useState(false);
   const [isClick4, setIsClick4] = useState(false);
+  const [isControl, setisControl] = useState(true);
   const [startTime, setStartTime] = useState(Date.now());
   const [isNav, setIsNav] = useState(false);
 
   const useNavigate = useNavigation();
 
+  const nextButton = () => {
+    const currentTime = Date.now();
+    const diff = currentTime - startTime;
+    console.log('isNav ', isNav);
+    const duration = formatTime(diff);
+    SaveGame(duration, false);
+    useNavigate.navigate('WellDoneScreen', {
+      data: duration,
+      avg: 5,
+      isWin: false,
+    });
+  };
+
+  const SaveGame = async (duration, isWing) => {
+    const value = await ReadUser();
+
+    let GameData = {
+      name: value.name,
+      game: 'focused',
+      duration: duration,
+      isWing: isWing,
+      playOn: Date.now(),
+    };
+    console.log('gg === ', GameData);
+    const res = await CreateNewGame(GameData);
+  };
+
   useEffect(() => {
-    console.log('st time', startTime);
-    console.log('animal ', animal);
     setTimeout(() => {
       setShowImage1(false);
       setShowImage2(true);
@@ -47,20 +75,14 @@ const ClickAnimalScreen = ({route}) => {
       setShowImage4(true);
     }, 11000);
 
-    setTimeout(() => {
+    const timeId = setTimeout(() => {
       setShowImage4(false);
-      const currentTime = Date.now();
-      const diff = currentTime - startTime;
-      console.log('call');
-      if (!isNav) {
-        console.log('in if call');
-        useNavigate.navigate('WellDoneScreen', {
-          data: formatTime(diff),
-          avg: 5,
-          isWin: false,
-        });
-      }
+      setisControl(true);
+      setIsNav(true);
     }, 14000);
+    return () => {
+      clearTimeout(timeId);
+    };
   }, []); // eslint-disable-line
 
   const formatTime = time => {
@@ -83,20 +105,24 @@ const ClickAnimalScreen = ({route}) => {
     setShowImage4(true);
   };
 
-  const select4 = () => {
+  const select4 = async () => {
     setIsClick4(true);
     const currentTime = Date.now();
     const diff = currentTime - startTime;
-    setIsNav(true);
+
+    const duration = formatTime(diff);
+
     if (isClick1 && isClick2 && isClick3) {
+      await SaveGame(duration, true);
       useNavigate.navigate('WellDoneScreen', {
-        data: formatTime(diff),
+        data: duration,
         avg: 5,
         isWin: true,
       });
     } else {
+      await SaveGame(duration, false);
       useNavigate.navigate('WellDoneScreen', {
-        data: formatTime(diff),
+        data: duration,
         avg: 5,
         isWin: false,
       });
@@ -145,6 +171,28 @@ const ClickAnimalScreen = ({route}) => {
             )}
           </View>
         </View>
+        {isNav ? (
+          <TouchableOpacity
+            style={[
+              Theme.w100,
+              Theme.h15,
+              Theme.ml2,
+              Theme.bgBlack,
+              Theme.borderRadius20,
+              Theme.justAlign,
+            ]}
+            onPress={nextButton}>
+            <Text
+              style={[
+                Theme.fWhite,
+                Theme.f25,
+                Theme.txtAlignCenter,
+                Theme.fBold,
+              ]}>
+              Go To Next
+            </Text>
+          </TouchableOpacity>
+        ) : null}
         <View style={Theme.h3} />
         <View
           style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
@@ -158,6 +206,7 @@ const ClickAnimalScreen = ({route}) => {
             )}
           </View>
         </View>
+
         <View style={Theme.h3} />
         <View
           style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
@@ -177,5 +226,11 @@ const ClickAnimalScreen = ({route}) => {
     </ImageBackground>
   );
 };
+
+const styles = StyleSheet.create({
+  btn: {
+    backgroundColor: '#9c0595',
+  },
+});
 
 export default ClickAnimalScreen;

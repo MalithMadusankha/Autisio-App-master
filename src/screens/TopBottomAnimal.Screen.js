@@ -8,12 +8,28 @@ import {
 } from 'react-native';
 import Theme from '../assets/theme/AxTheme';
 import {useNavigation} from '@react-navigation/native';
+import {ReadUser} from '../constants/constants';
+import CreateNewGame from '../service/GameService';
 
 const TopBottomAnimalScreen = ({route}) => {
   const {animal} = route.params;
   const [currentImage, setCurrentImage] = useState(1);
   const [startTime, setStartTime] = useState(Date.now());
   const navigation = useNavigation();
+
+  const SaveGame = async (duration, isWing) => {
+    const value = await ReadUser();
+
+    let GameData = {
+      name: value.name,
+      game: 'selective',
+      duration: duration,
+      isWing: isWing,
+      playOn: Date.now(),
+    };
+    console.log('gg === ', GameData);
+    const res = await CreateNewGame(GameData);
+  };
 
   useEffect(() => {
     const imageSources = [
@@ -31,18 +47,20 @@ const TopBottomAnimalScreen = ({route}) => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const clickAnimal = () => {
+  const clickAnimal = async () => {
     const currentTime = Date.now();
     const diff = currentTime - startTime;
+    const duration = Math.floor(diff / 1000);
+    await SaveGame(duration, true);
     if (currentImage === 1) {
       navigation.navigate('WellDoneScreen', {
-        data: Math.floor(diff / 1000),
+        data: duration,
         avg: 12,
         isWin: true,
       });
     } else {
       navigation.navigate('WellDoneScreen', {
-        data: Math.floor(diff / 1000),
+        data: duration,
         avg: 12,
         isWin: false,
       });

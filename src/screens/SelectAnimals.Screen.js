@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Theme from '../assets/theme/AxTheme';
 import {
   Dimensions,
@@ -11,10 +11,19 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import CardComponent from '../components/CardComponent';
-import ClickAnimalScreen from './ClickAnimal.Screen';
+import {ReadUser} from '../constants/constants';
 
 const SelectAnimalsScreen = ({navigation}) => {
   const SCREEN_HEIGHT = Dimensions.get('screen').height;
+  const [age, setAge] = useState(5);
+
+  const getUser = async () => {
+    const userData = await ReadUser();
+    setAge(userData.age);
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <KeyboardAwareScrollView
@@ -53,7 +62,7 @@ const SelectAnimalsScreen = ({navigation}) => {
                   CARD_TITLE={'Bird'}
                   CARD_IMG_STYLE={[Theme.w70, Theme.h70]}
                   CARD_ON_PRESS={() =>
-                    navigation.navigate('ClickAnimalScreen', {
+                    navigation.navigate(`ClickAnimalScreen${age}`, {
                       animal: 'b',
                     })
                   }
@@ -71,7 +80,7 @@ const SelectAnimalsScreen = ({navigation}) => {
                   CARD_IMG={require('../assets/img/animals/dog.png')}
                   CARD_BG={[Theme.bgMain2, Theme.borderRadius20]}
                   CARD_ON_PRESS={() =>
-                    navigation.navigate('ClickAnimalScreen', {
+                    navigation.navigate(`ClickAnimalScreen${age}`, {
                       animal: 'd',
                     })
                   }
@@ -87,7 +96,7 @@ const SelectAnimalsScreen = ({navigation}) => {
                   CARD_IMG={require('../assets/img/animals/monkey.png')}
                   CARD_BG={[Theme.bgMain4, Theme.borderRadius20]}
                   CARD_ON_PRESS={() =>
-                    navigation.navigate('ClickAnimalScreen', {
+                    navigation.navigate(`ClickAnimalScreen${age}`, {
                       animal: 'm',
                     })
                   }
@@ -103,14 +112,15 @@ const SelectAnimalsScreen = ({navigation}) => {
                   CARD_IMG={require('../assets/img/animals/zebra.png')}
                   CARD_BG={[Theme.bgMain5, Theme.borderRadius20]}
                   CARD_ON_PRESS={() =>
-                    navigation.navigate('ClickAnimalScreen', {
+                    navigation.navigate(`ClickAnimalScreen${age}`, {
                       animal: 'z',
                     })
                   }
                 />
               </View>
             </View>
-            <View style={[Theme.h21]} />
+            <View style={[Theme.h5]} />
+            <View style={[Theme.h15, Theme.flexDirRow, Theme.ml7]} />
           </ImageBackground>
         </View>
       </View>

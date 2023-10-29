@@ -11,6 +11,8 @@ import {
 import Theme from '../assets/theme/AxTheme';
 import GameCard from '../components/GameCard';
 import {useNavigation} from '@react-navigation/native';
+import {ReadUser} from '../constants/constants';
+import CreateNewGame from '../service/GameService';
 
 const GameLevel3Screen = () => {
   const cards = [
@@ -41,6 +43,20 @@ const GameLevel3Screen = () => {
   const [startTime, setStartTime] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [temp, setTemp] = useState(0);
+
+  const SaveGame = async (duration, isWing) => {
+    const value = await ReadUser();
+
+    let GameData = {
+      name: value.name,
+      game: 'selective',
+      duration: duration,
+      isWing: isWing,
+      playOn: Date.now(),
+    };
+    console.log('gg === ', GameData);
+    const res = await CreateNewGame(GameData);
+  };
 
   useEffect(() => {
     setTemp(require('../assets/icons/parrot.png'));
@@ -102,10 +118,14 @@ const GameLevel3Screen = () => {
 
   const useNavigate = useNavigation();
 
-  const navigateWellDone = () => {
+  const navigateWellDone = async () => {
     setFirstSelectedCard(null);
     setSecondSelectedCard(null);
     setThirdSelectedCard(null);
+
+    const duration = Math.floor(elapsedTime / 1000) % 60;
+    await SaveGame(duration, true);
+
     useNavigate.navigate('WellDoneScreen', {
       data: Math.floor(elapsedTime / 1000) % 60,
       avg: 5,
@@ -204,11 +224,12 @@ const GameLevel3Screen = () => {
           </View>
         </View>
         <View
-          style={[Theme.w90, Theme.h5, Theme.bgTransparent, Theme.justAlign]}>
-          <Text style={[styles.timeText, Theme.fMain1]}>
-            {formatTime(elapsedTime)}
-          </Text>
-        </View>
+          style={[
+            Theme.w90,
+            Theme.h5,
+            Theme.bgTransparent,
+            Theme.justAlign,
+          ]}></View>
         <View style={[Theme.h2]} />
         <View style={[Theme.w75, Theme.h7, Theme.justAlign, Theme.flexDirRow]}>
           <View style={[Theme.w48, Theme.h100, Theme.justAlign]}>
@@ -234,28 +255,6 @@ const GameLevel3Screen = () => {
           </View>
 
           <View style={[Theme.w2]} />
-
-          <View style={[Theme.w48, Theme.h100, Theme.justAlign]}>
-            <TouchableOpacity
-              style={[
-                Theme.w100,
-                Theme.h100,
-                Theme.bgMain1,
-                Theme.borderRadius40,
-                Theme.justAlign,
-              ]}
-              onPress={stopTimer}>
-              <Text
-                style={[
-                  Theme.fWhite,
-                  Theme.f17,
-                  Theme.txtAlignCenter,
-                  Theme.fBold,
-                ]}>
-                Stop
-              </Text>
-            </TouchableOpacity>
-          </View>
         </View>
         <View style={[Theme.h30]} />
         <View
@@ -334,27 +333,13 @@ const GameLevel3Screen = () => {
           </View>
         </View>
         <View style={[Theme.h28]} />
-        <View style={[Theme.w75, Theme.h7, Theme.justAlign, Theme.flexDirRow]}>
-          <TouchableOpacity
-            style={[
-              Theme.w60,
-              Theme.h100,
-              Theme.bgMain1,
-              Theme.borderRadius40,
-              Theme.justAlign,
-            ]}
-            onPress={replay}>
-            <Text
-              style={[
-                Theme.fWhite,
-                Theme.f17,
-                Theme.txtAlignCenter,
-                Theme.fBold,
-              ]}>
-              Repeat
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <View
+          style={[
+            Theme.w75,
+            Theme.h7,
+            Theme.justAlign,
+            Theme.flexDirRow,
+          ]}></View>
         <View style={[Theme.h5]} />
       </View>
     </ImageBackground>

@@ -22,14 +22,6 @@ const TermsScreen = ({navigation}) => {
       style={[{height: SCREEN_HEIGHT}]}>
       <View style={[{height: SCREEN_HEIGHT}]}>
         <View style={[Theme.container, Theme.bgMain1, Theme.w100, Theme.h100]}>
-          <View style={[Theme.w90, Theme.h5]}>
-            <TouchableOpacity style={[Theme.w15, Theme.h100, Theme.justAlign]}>
-              <Image
-                source={require('../assets/icons/angle-circle-left.png')}
-                style={[styles.leftSide]}
-              />
-            </TouchableOpacity>
-          </View>
           <View style={[Theme.h4]} />
           <View style={[Theme.w80, Theme.h40]}>
             <Text
@@ -76,7 +68,7 @@ const TermsScreen = ({navigation}) => {
                 Theme.justAlign,
                 Theme.borderRadius10,
               ]}
-              onPress={() => navigation.navigate('AttentionScreen')}>
+              onPress={() => navigation.navigate('GatherDataScreen')}>
               <Text
                 style={[
                   Theme.fBlack,

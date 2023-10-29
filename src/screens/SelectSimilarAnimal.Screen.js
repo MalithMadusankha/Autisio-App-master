@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import Theme from '../assets/theme/AxTheme';
 import {LogBox} from 'react-native';
+import {ReadUser} from '../constants/constants';
+import CreateNewGame from '../service/GameService';
 
 let cow = false;
 let cat = false;
@@ -32,6 +34,20 @@ const SelectSimilarAnimalScreen = ({navigation}) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [intArr, setIntArr] = useState([]);
   const [startTime, setStartTime] = useState(Date.now());
+
+  const SaveGame = async (duration, isWing) => {
+    const value = await ReadUser();
+
+    let GameData = {
+      name: value.name,
+      game: 'devided',
+      duration: duration,
+      isWing: isWing,
+      playOn: Date.now(),
+    };
+    console.log('gg === ', GameData);
+    const res = await CreateNewGame(GameData);
+  };
 
   useEffect(() => {
     // console.log('================ Start ====================');
@@ -57,7 +73,7 @@ const SelectSimilarAnimalScreen = ({navigation}) => {
     return () => clearInterval(intervalId);
   };
 
-  const checkClickImage = () => {
+  const checkClickImage = async () => {
     // console.log('selectedImage', selectedImage);
     // console.log('selectedImageIndex', selectedImageIndex);
     // console.log('imageUrlsChose', imageUrlsChose);
@@ -108,8 +124,12 @@ const SelectSimilarAnimalScreen = ({navigation}) => {
 
       const diff = currentTime - startTime;
       console.log('diff', diff);
+
+      const duration = Math.floor(diff / 1000);
+      await SaveGame(duration, true);
+
       navigation.navigate('WellDoneScreen', {
-        data: Math.floor(diff / 1000),
+        data: duration,
         avg: 62,
         isWin: true,
       });
