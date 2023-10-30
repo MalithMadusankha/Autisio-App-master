@@ -151,9 +151,15 @@ const ReportSummaryScreen3 = ({navigation}) => {
           </View>
 
           <View style={[Theme.w90, Theme.h15, Theme.justAlign]}>
-            <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-              Finaly, Child needs more attention. Helth is good.
-            </Text>
+            {dataReport?.status === 1 ? (
+              <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+                Finaly, Child helth is good.
+              </Text>
+            ) : (
+              <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
+                Finaly, Child needs more attention.
+              </Text>
+            )}
           </View>
         </View>
       )}

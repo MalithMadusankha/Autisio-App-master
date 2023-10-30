@@ -67,11 +67,11 @@ const VideoRecorder = ({resArr, setResArr, setIsLoading, navigation}) => {
     try {
       setIsRecording(true);
       const data = await recordVideo(recordOptions);
-      console.warn(data.uri);
+
       setVideoUri(data.uri);
       uploadHandler(parent, data.uri);
     } catch (error) {
-      console.warn(error);
+      // console.warn(error);
     } finally {
       setIsRecording(false);
     }

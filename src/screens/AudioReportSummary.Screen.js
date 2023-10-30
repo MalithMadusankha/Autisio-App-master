@@ -36,18 +36,21 @@ const AudioReportSummaryScreen = ({navigation, route}) => {
             </Text>
           </View>
         </View>
+        {/* left */}
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
             Child respond to the father's voice -{' '}
             {resArr[0] > 0 ? 'Well Done ' : 'Not Good'}
           </Text>
         </View>
+        {/* right */}
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
             Child respond to the mother's voice -{' '}
             {resArr[1] < 0 ? 'Well Done ' : 'Not Good'}
           </Text>
         </View>
+
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
             {resArr[0] > 0 && resArr[1] < 0
