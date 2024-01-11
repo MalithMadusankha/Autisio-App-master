@@ -48,38 +48,19 @@ npm run ios
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Step 3: Modifying your App
+### Screen Shots?
 
-Now that you have successfully run the app, let's modify it.
 
-1. Open `App.js` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+![IMG-20240111-WA0031](https://github.com/MalithMadusankha/Autisio-App-master/assets/78203677/0ea1e795-39eb-4b4d-b39d-d3e2835f2a57)
+![IMG-20240111-WA0032](https://github.com/MalithMadusankha/Autisio-App-master/assets/78203677/37518851-0291-48e6-b5d9-5f93fffc6fc6)
+![IMG-20240111-WA0029](https://github.com/MalithMadusankha/Autisio-App-master/assets/78203677/e2c66f50-8652-437a-bdd2-ecafa4247b6c)
+![IMG-20240111-WA0027](https://github.com/MalithMadusankha/Autisio-App-master/assets/78203677/66f6d7ea-b6a3-4887-abab-297deff011b9)
+![IMG-20240111-WA0028](https://github.com/MalithMadusankha/Autisio-App-master/assets/78203677/6a598b24-f8df-4b50-9260-5fe7bc3943fa)
+![IMG-20240111-WA0029](https://github.com/MalithMadusankha/Autisio-App-master/assets/78203677/19ac586c-4fd2-46b5-a91e-16e78ec1c605)
+![IMG-20240111-WA0030](https://github.com/MalithMadusankha/Autisio-App-master/assets/78203677/ef036286-34e9-4921-9bff-550942ddace4)
+![IMG-20240111-WA0020](https://github.com/MalithMadusankha/Autisio-App-master/assets/78203677/79c1b039-f10a-4857-816f-5a4e59e544ad)
+![IMG-20240111-WA0026](https://github.com/MalithMadusankha/Autisio-App-master/assets/78203677/50c1648b-ce40-482c-8d17-0d4b9e1e4c4c)
+![IMG-20240111-WA0024](https://github.com/MalithMadusankha/Autisio-App-master/assets/78203677/d87eae18-5015-4b87-9b0c-b9e9d34ada4a)
+![IMG-20240111-WA0022](https://github.com/MalithMadusankha/Autisio-App-master/assets/78203677/ec3d5242-ddc0-4c74-9638-0a90c2fb6aca)
