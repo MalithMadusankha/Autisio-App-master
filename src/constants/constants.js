@@ -1,10 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ENDPOINT =
-  'https://e647-2402-d000-8100-40a2-b019-63e8-7cf8-4483.ngrok-free.app/';
+  'https://8234-2402-d000-8100-40a2-35fc-b3ab-cefe-cb93.ngrok-free.app/';
 
 export const ANY_ENDPOINT =
-  'https://e647-2402-d000-8100-40a2-b019-63e8-7cf8-4483.ngrok-free.app/';
+  'https://8234-2402-d000-8100-40a2-35fc-b3ab-cefe-cb93.ngrok-free.app/';
 
 export const ReadUser = async () => {
   try {
