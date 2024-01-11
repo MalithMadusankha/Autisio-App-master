@@ -13,7 +13,6 @@ import ReportSummaryScreen2 from '../screens/ReportSummary.Screen2';
 import WellDoneScreen from '../screens/WellDone.Screen';
 import SelectSimilarAnimalScreen from '../screens/SelectSimilarAnimal.Screen';
 import TopBottomAnimalScreen from '../screens/TopBottomAnimal.Screen';
-import ChildFaceScreen from '../screens/ChildFace.Screen';
 import AudioAttentionScreen from '../screens/AudioAttention.Screen';
 import InstuctionScreen from '../screens/Instuction.Screen';
 import AudioReportSummaryScreen from '../screens/AudioReportSummary.Screen';
