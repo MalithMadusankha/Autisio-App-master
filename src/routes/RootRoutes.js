@@ -24,6 +24,7 @@ import WelcomeScreen from '../screens/Welcome.Screen';
 import GatherDataScreen from '../screens/GatherData.Screen';
 import ClickAnimalScreen6 from '../screens/ClickAnimal.Screen6';
 import ClickAnimalScreen7 from '../screens/ClickAnimal.Screen7';
+import LoginScreen from '../screens/user/Login.Screen';
 
 const RootRoutes = () => {
   const Stack = createStackNavigator();
@@ -39,7 +40,8 @@ const RootRoutes = () => {
         })}>
         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
         <Stack.Screen name="TermsScreen" component={TermsScreen} />
-        <Stack.Screen name="GatherDataScreen" component={GatherDataScreen} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="RegisterScreen" component={GatherDataScreen} />
         <Stack.Screen
           name="SelectAnimalsScreen"
           component={SelectAnimalsScreen}

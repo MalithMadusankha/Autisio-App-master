@@ -12,7 +12,7 @@ import {GetAnalysis} from '../service/GameService';
 
 const ReportSummaryScreen3 = ({navigation}) => {
   const [dataReport, setDataReport] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // change to true when intergrate
 
   const FetchAnalysis = async () => {
     const res = await GetAnalysis();
@@ -25,7 +25,7 @@ const ReportSummaryScreen3 = ({navigation}) => {
 
   useEffect(() => {
     console.log(' == ReportSummaryScreen3 ==');
-    FetchAnalysis();
+    // FetchAnalysis();
   }, []);
 
   return (

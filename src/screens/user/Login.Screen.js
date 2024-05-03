@@ -8,10 +8,10 @@ import {
   Animated,
   ImageBackground,
 } from 'react-native';
-import TM from '../assets/theme/AxTheme';
-import ChildInfoForm from '../components/ChildInfoForm';
+import TM from '../../assets/theme/AxTheme';
+import LoginForm from '../../components/LoginForm';
 
-const GatherDataScreen = ({navigation}) => {
+const LoginScreen = ({navigation}) => {
   const SCREEN_WIDTH = Dimensions.get('screen').width;
   const SCREEN_HEIGHT = Dimensions.get('screen').height;
   const [height, setHeight] = useState(0.7);
@@ -25,13 +25,13 @@ const GatherDataScreen = ({navigation}) => {
     <ImageBackground
       imageStyle={[TM.w100, TM.h100, TM.justAlign]}
       style={[TM.w100, TM.h100, TM.justAlign]}
-      source={require('../assets/img/background/login.jpg')}>
-      <View style={[TM.h5, TM.justAlign]}>
-        <Text style={[TM.f20]}>Register Here </Text>
+      source={require('../../assets/img/background/login.jpg')}>
+      <View style={[TM.h10, TM.justAlign]}>
+        <Text style={[TM.f20]}>Login Here </Text>
       </View>
 
-      <View style={[TM.bgWhiteT, TM.borderRadius20, TM.px3, TM.h90, TM.w85]}>
-        <ChildInfoForm navigation={navigation} />
+      <View style={[TM.bgWhiteT, TM.borderRadius20, TM.px3, TM.h85, TM.w85]}>
+        <LoginForm navigation={navigation} />
       </View>
     </ImageBackground>
   );
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GatherDataScreen;
+export default LoginScreen;

@@ -49,7 +49,7 @@ const WelcomeScreen = ({navigation}) => {
     setTimeout(() => {
       navigation.navigate('TermsScreen');
     }, 2500);
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <View style={[Theme.container, Theme.bgWelCome, Theme.w100, Theme.h100]}>

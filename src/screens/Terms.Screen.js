@@ -68,7 +68,7 @@ const TermsScreen = ({navigation}) => {
                 Theme.justAlign,
                 Theme.borderRadius10,
               ]}
-              onPress={() => navigation.navigate('GatherDataScreen')}>
+              onPress={() => navigation.navigate('LoginScreen')}>
               <Text
                 style={[
                   Theme.fBlack,

@@ -12,7 +12,7 @@ import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TM from '../assets/theme/AxTheme';
 
-const ChildInfoForm = ({navigation}) => {
+const LoginForm = ({navigation}) => {
   const [name, setName] = useState('');
   const [age, setAge] = useState(5);
   const [gender, setGender] = useState('male');
@@ -48,13 +48,6 @@ const ChildInfoForm = ({navigation}) => {
       />
 
       <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={[TM.w100, styles.input, TM.borderRadius20]}
-        // value={name}
-        onChangeText={text => setName(text)}
-      />
-
-      <Text style={styles.label}>Re-Enter Password</Text>
       <TextInput
         style={[TM.w100, styles.input, TM.borderRadius20]}
         // value={name}
@@ -104,10 +97,10 @@ const ChildInfoForm = ({navigation}) => {
         <Text style={[TM.fWhite]}> REGISTER</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('LoginScreen')}
+        onPress={() => navigation.navigate('RegisterScreen')}
         style={[TM.h4, TM.mt5]}>
         <Text style={[styles.reg, TM.txtAlignCenter]}>
-          If you have account Login
+          If you don't have account Register
         </Text>
       </TouchableOpacity>
     </View>
@@ -166,4 +159,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChildInfoForm;
+export default LoginForm;
