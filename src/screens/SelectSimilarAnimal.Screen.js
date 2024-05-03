@@ -126,7 +126,7 @@ const SelectSimilarAnimalScreen = ({navigation}) => {
       console.log('diff', diff);
 
       const duration = Math.floor(diff / 1000);
-      await SaveGame(duration, true);
+      // await SaveGame(duration, true);
 
       navigation.navigate('WellDoneScreen', {
         data: duration,

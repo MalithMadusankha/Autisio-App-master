@@ -36,6 +36,10 @@ const AxTheme = StyleSheet.create({
     backgroundColor: '#B8AE6A',
   },
 
+  bgWhiteT: {
+    backgroundColor: '#ebedf583',
+  },
+
   fMain0: {
     color: '#FFAD4A',
   },

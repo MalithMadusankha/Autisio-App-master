@@ -22,10 +22,16 @@ const AttentionScreen = ({navigation}) => {
             style={[styles.leftSide]}
           />
         </View>
-        <View style={[Theme.w85, Theme.h100, Theme.justifyCenter]}>
+        <View style={[Theme.w50, Theme.h100, Theme.justifyCenter]}>
           <Text style={[Theme.fWhite, Theme.f20, Theme.fBold]}>
-            Attention Assessing Games
+            Attention Games
           </Text>
+        </View>
+        <View style={[Theme.w15, Theme.h100, Theme.justifyCenter]}>
+          <Text style={[Theme.fWhite, Theme.f20, Theme.fBold]}>Eng</Text>
+        </View>
+        <View style={[Theme.w15, Theme.h100, Theme.justifyCenter]}>
+          <Text style={[Theme.fWhite, Theme.f20, Theme.fBold]}>Sin</Text>
         </View>
       </View>
       <View style={[Theme.w100, Theme.h92]}>

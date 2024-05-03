@@ -22,7 +22,7 @@ const SelectAnimalsScreen = ({navigation}) => {
     setAge(userData.age);
   };
   useEffect(() => {
-    getUser();
+    // getUser();
   }, []);
 
   return (
