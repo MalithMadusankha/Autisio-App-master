@@ -33,13 +33,6 @@ const ChildInfoForm = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.labelT}>Name</Text>
-      <TextInput
-        style={[TM.w100, styles.input, TM.borderRadius20]}
-        value={name}
-        onChangeText={text => setName(text)}
-      />
-
       <Text style={styles.label}>Email</Text>
       <TextInput
         style={[TM.w100, styles.input, TM.borderRadius20]}
