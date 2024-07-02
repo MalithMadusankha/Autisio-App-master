@@ -26,6 +26,7 @@ import ClickAnimalScreen6 from '../screens/ClickAnimal.Screen6';
 import ClickAnimalScreen7 from '../screens/ClickAnimal.Screen7';
 import LoginScreen from '../screens/user/Login.Screen';
 
+// routes
 const RootRoutes = () => {
   const Stack = createStackNavigator();
   return (
