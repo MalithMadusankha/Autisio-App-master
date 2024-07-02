@@ -286,6 +286,10 @@ const AxTheme = StyleSheet.create({
     backgroundColor: '#9f05cc',
   },
 
+  bgPurlLight: {
+    backgroundColor: '#585ba7b7',
+  },
+
   bgPink: {
     backgroundColor: '#ff00d5',
   },
@@ -964,8 +968,20 @@ const AxTheme = StyleSheet.create({
     borderBottomRightRadius: 45,
   },
 
-  borBotRightRad50: {
-    borderBottomRightRadius: 50,
+  borBotRightRad20: {
+    borderBottomRightRadius: 40,
+  },
+
+  borTopRightRad20: {
+    borderTopRightRadius: 40,
+  },
+
+  borBotLeftRad20: {
+    borderBottomLeftRadius: 40,
+  },
+
+  borTopLeftRad20: {
+    borderTopLeftRadius: 40,
   },
 
   borBotLeftRad15: {

@@ -21,7 +21,7 @@ import SelectAnimalsSusScreen from '../screens/SelectAnimalsSus.Screen';
 import GameLevelsScreen from '../screens/GameLevels.Screen';
 import VideoRecorder from '../components/video/VideoRecorder';
 import WelcomeScreen from '../screens/Welcome.Screen';
-import GatherDataScreen from '../screens/GatherData.Screen';
+import GatherDataScreen from '../screens/user/GatherData.Screen';
 import ClickAnimalScreen6 from '../screens/ClickAnimal.Screen6';
 import ClickAnimalScreen7 from '../screens/ClickAnimal.Screen7';
 import LoginScreen from '../screens/user/Login.Screen';

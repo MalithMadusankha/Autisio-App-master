@@ -16,9 +16,11 @@ const LoginForm = ({navigation}) => {
   const [name, setName] = useState('');
   const [age, setAge] = useState(5);
   const [gender, setGender] = useState('male');
+  const [selectLang, setSelectLang] = useState(0);
 
-  const SCREEN_WIDTH = Dimensions.get('screen').width;
-  const SCREEN_HEIGHT = Dimensions.get('screen').height;
+  const langHandler = num => {
+    setSelectLang(num);
+  };
 
   const saveChildInfo = async () => {
     try {
@@ -33,13 +35,6 @@ const LoginForm = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.labelT}>Name</Text>
-      <TextInput
-        style={[TM.w100, styles.input, TM.borderRadius20]}
-        value={name}
-        onChangeText={text => setName(text)}
-      />
-
       <Text style={styles.label}>Email</Text>
       <TextInput
         style={[TM.w100, styles.input, TM.borderRadius20]}
@@ -94,7 +89,7 @@ const LoginForm = ({navigation}) => {
           TM.borderRadius20,
         ]}
         onPress={saveChildInfo}>
-        <Text style={[TM.fWhite]}> REGISTER</Text>
+        <Text style={[TM.fWhite]}> LOGIN</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('RegisterScreen')}
@@ -103,6 +98,32 @@ const LoginForm = ({navigation}) => {
           If you don't have account Register
         </Text>
       </TouchableOpacity>
+      <View style={[TM.flexDirRow, TM.h12]}>
+        <TouchableOpacity
+          onPress={() => langHandler(1)}
+          style={[
+            TM.mt5,
+            TM.w20,
+            selectLang === 1 ? styles.bgBlue : TM.bgPurlLight,
+            TM.borBotLeftRad20,
+            TM.borTopLeftRad20,
+            TM.justAlign,
+          ]}>
+          <Text style={[TM.txtAlignCenter, TM.f20, TM.fWhite]}>සිං</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => langHandler(0)}
+          style={[
+            TM.mt5,
+            TM.w20,
+            selectLang === 0 ? styles.bgBlue : TM.bgPurlLight,
+            TM.borTopRightRad20,
+            TM.borBotRightRad20,
+            TM.justAlign,
+          ]}>
+          <Text style={[TM.txtAlignCenter, TM.f20, TM.fWhite]}>Eng</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
