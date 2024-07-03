@@ -140,7 +140,7 @@ const SelectSimilarAnimalScreen = ({navigation}) => {
     <ImageBackground
       imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
       style={[Theme.w100, Theme.h100, Theme.justAlign]}
-      source={require('../assets/img/background/bg_3.jpg')}>
+      source={require('../assets/img/background/bg-gif.gif')}>
       <View style={[Theme.w100, Theme.h5]}>
         <TouchableOpacity
           style={[Theme.w15, Theme.h100, Theme.justAlign, Theme.ml2]}>

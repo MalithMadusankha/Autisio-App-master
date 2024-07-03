@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import Theme from '../assets/theme/AxTheme';
+import TM from '../assets/theme/AxTheme';
 import GameCard from '../components/GameCard';
 import {useNavigation} from '@react-navigation/native';
 import {ReadUser} from '../constants/constants';
@@ -197,83 +197,63 @@ const GameLevel3Screen = () => {
 
   return (
     <ImageBackground
-      imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
-      style={[Theme.w100, Theme.h100, Theme.justAlign]}
-      source={require('../assets/img/background/bg_3.jpg')}>
-      <View style={[Theme.h5]} />
+      imageStyle={[TM.w100, TM.h100, TM.justAlign]}
+      style={[TM.w100, TM.h100, TM.justAlign]}
+      source={require('../assets/img/background/bg-chose.jpg')}>
+      <View style={[TM.h5]} />
 
-      <View style={[Theme.w100, Theme.h93, Theme.justAlign]}>
-        <View style={[Theme.w100, Theme.h7, Theme.justAlign, Theme.flexDirRow]}>
-          <TouchableOpacity
-            style={[Theme.w10, Theme.h100, Theme.justAlign, Theme.ml2]}>
+      <View style={[TM.w100, TM.h93, TM.justAlign]}>
+        <View style={[TM.w100, TM.h7, TM.justAlign, TM.flexDirRow]}>
+          <TouchableOpacity style={[TM.w10, TM.h100, TM.justAlign, TM.ml2]}>
             <Image
               source={require('../assets/icons/angle-small-left.png')}
-              style={[Theme.w60, Theme.h53]}
+              style={[TM.w60, TM.h53]}
             />
           </TouchableOpacity>
-          <View style={[Theme.w60, Theme.h100, Theme.justAlign]}>
-            <Text style={[Theme.fBlack, Theme.f20, Theme.fBold]}>
+          <View style={[TM.w60, TM.h100, TM.justAlign]}>
+            <Text style={[TM.fBlack, TM.f20, TM.fBold, TM.fWhite]}>
               Choose this from below
             </Text>
           </View>
-          <View style={[Theme.w30, Theme.h100, Theme.justifyCenter]}>
+          <View style={[TM.w30, TM.h100, TM.justifyCenter]}>
             <Image
               source={require('../assets/icons/parrot.png')}
               style={[styles.leftSide]}
             />
           </View>
         </View>
-        <View
-          style={[
-            Theme.w90,
-            Theme.h5,
-            Theme.bgTransparent,
-            Theme.justAlign,
-          ]}></View>
-        <View style={[Theme.h2]} />
-        <View style={[Theme.w75, Theme.h7, Theme.justAlign, Theme.flexDirRow]}>
-          <View style={[Theme.w48, Theme.h100, Theme.justAlign]}>
+        <View style={[TM.w90, TM.h5, TM.bgTransparent, TM.justAlign]}></View>
+        <View style={[TM.h2]} />
+        <View style={[TM.w75, TM.h7, TM.justAlign, TM.flexDirRow]}>
+          <View style={[TM.w48, TM.h100, TM.justAlign]}>
             <TouchableOpacity
               style={[
-                Theme.w100,
-                Theme.h100,
-                Theme.bgMain1,
-                Theme.borderRadius40,
-                Theme.justAlign,
+                TM.w100,
+                TM.h100,
+                TM.bgMain1,
+                TM.borderRadius40,
+                TM.justAlign,
               ]}
               onPress={startTimer}>
-              <Text
-                style={[
-                  Theme.fWhite,
-                  Theme.f17,
-                  Theme.txtAlignCenter,
-                  Theme.fBold,
-                ]}>
+              <Text style={[TM.fWhite, TM.f17, TM.txtAlignCenter, TM.fBold]}>
                 Start
               </Text>
             </TouchableOpacity>
           </View>
 
-          <View style={[Theme.w2]} />
+          <View style={[TM.w2]} />
         </View>
-        <View style={[Theme.h30]} />
-        <View
-          style={[Theme.w90, Theme.h18, Theme.bgTransparent, Theme.justAlign]}>
+        <View style={[TM.h30]} />
+        <View style={[TM.w90, TM.h18, TM.bgTransparent, TM.justAlign]}>
           <View
             style={[
-              Theme.w100,
-              Theme.h100,
-              Theme.bgTransparent,
-              Theme.justAlign,
-              Theme.flexDirRow,
+              TM.w100,
+              TM.h100,
+              TM.bgTransparent,
+              TM.justAlign,
+              TM.flexDirRow,
             ]}>
-            <View
-              style={[
-                Theme.w100,
-                Theme.h100,
-                Theme.justAlign,
-                Theme.bgTransparent,
-              ]}>
+            <View style={[TM.w100, TM.h100, TM.justAlign, TM.bgTransparent]}>
               <View style={styles.cardsContainer}>
                 {cardPlacements.slice(0, 3).map((placement, cardIndex) => (
                   <View key={cardIndex} style={styles.cardWrapper}>
@@ -332,15 +312,9 @@ const GameLevel3Screen = () => {
             </View>
           </View>
         </View>
-        <View style={[Theme.h28]} />
-        <View
-          style={[
-            Theme.w75,
-            Theme.h7,
-            Theme.justAlign,
-            Theme.flexDirRow,
-          ]}></View>
-        <View style={[Theme.h5]} />
+        <View style={[TM.h28]} />
+        <View style={[TM.w75, TM.h7, TM.justAlign, TM.flexDirRow]}></View>
+        <View style={[TM.h5]} />
       </View>
     </ImageBackground>
   );

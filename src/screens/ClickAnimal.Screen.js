@@ -4,13 +4,9 @@ import {
   Text,
   StyleSheet,
   View,
-  Button,
-  Dimensions,
-  Animated,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
-import Theme from '../assets/theme/AxTheme';
+import TM from '../assets/theme/AxTheme';
 import {useNavigation} from '@react-navigation/native';
 import AnimalImageComponet from '../components/AnimalImageComponet';
 import CreateNewGame from '../service/GameService';
@@ -131,40 +127,37 @@ const ClickAnimalScreen = ({route}) => {
 
   return (
     <ImageBackground
-      imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
-      style={[Theme.w100, Theme.h100, Theme.justAlign]}
-      source={require('../assets/img/background/bg_1_1.jpg')}>
-      <Text
-        style={[Theme.fBlack, Theme.f20, Theme.fBold, Theme.txtAlignCenter]}>
+      imageStyle={[TM.w100, TM.h100, TM.justAlign]}
+      style={[TM.w100, TM.h100, TM.justAlign]}
+      source={require('../assets/img/background/bg-1.jpg')}>
+      <Text style={[TM.fBlack, TM.f20, TM.fBold, TM.txtAlignCenter, TM.fWhite]}>
         Click on the animal appearing on the screen
       </Text>
 
-      <View style={[Theme.h5]} />
+      <View style={[TM.h5]} />
 
-      <View style={[Theme.w90, Theme.h80]}>
-        <View
-          style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
+      <View style={[TM.w90, TM.h80]}>
+        <View style={[TM.w100, TM.h20, TM.flexDirRow, TM.justAlign]}>
+          <View style={[TM.w40, TM.h100, TM.justAlign]}>
             {showImage1 && !isClick1 && (
               <TouchableOpacity
-                style={[Theme.w100, Theme.h100, Theme.justAlign]}
+                style={[TM.w100, TM.h100, TM.justAlign]}
                 onPress={select1}>
                 {animal ? <AnimalImageComponet animal={animal} /> : null}
               </TouchableOpacity>
             )}
           </View>
-          <View style={[Theme.w10]} />
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}></View>
+          <View style={[TM.w10]} />
+          <View style={[TM.w40, TM.h100, TM.justAlign]}></View>
         </View>
-        <View style={Theme.h3} />
-        <View
-          style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}></View>
-          <View style={[Theme.w10]} />
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
+        <View style={TM.h3} />
+        <View style={[TM.w100, TM.h20, TM.flexDirRow, TM.justAlign]}>
+          <View style={[TM.w40, TM.h100, TM.justAlign]}></View>
+          <View style={[TM.w10]} />
+          <View style={[TM.w40, TM.h100, TM.justAlign]}>
             {showImage2 && !isClick2 && (
               <TouchableOpacity
-                style={[Theme.w100, Theme.h100, Theme.justAlign]}
+                style={[TM.w100, TM.h100, TM.justAlign]}
                 onPress={select2}>
                 {animal ? <AnimalImageComponet animal={animal} /> : null}
               </TouchableOpacity>
@@ -174,32 +167,25 @@ const ClickAnimalScreen = ({route}) => {
         {isNav ? (
           <TouchableOpacity
             style={[
-              Theme.w100,
-              Theme.h15,
-              Theme.ml2,
-              Theme.bgBlack,
-              Theme.borderRadius20,
-              Theme.justAlign,
+              TM.w100,
+              TM.h15,
+              TM.ml2,
+              TM.bgBlack,
+              TM.borderRadius20,
+              TM.justAlign,
             ]}
             onPress={nextButton}>
-            <Text
-              style={[
-                Theme.fWhite,
-                Theme.f25,
-                Theme.txtAlignCenter,
-                Theme.fBold,
-              ]}>
+            <Text style={[TM.fWhite, TM.f25, TM.txtAlignCenter, TM.fBold]}>
               Go To Next
             </Text>
           </TouchableOpacity>
         ) : null}
-        <View style={Theme.h3} />
-        <View
-          style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
+        <View style={TM.h3} />
+        <View style={[TM.w100, TM.h20, TM.flexDirRow, TM.justAlign]}>
+          <View style={[TM.w40, TM.h100, TM.justAlign]}>
             {showImage3 && !isClick3 && (
               <TouchableOpacity
-                style={[Theme.w100, Theme.h100, Theme.justAlign]}
+                style={[TM.w100, TM.h100, TM.justAlign]}
                 onPress={select3}>
                 {animal ? <AnimalImageComponet animal={animal} /> : null}
               </TouchableOpacity>
@@ -207,20 +193,19 @@ const ClickAnimalScreen = ({route}) => {
           </View>
         </View>
 
-        <View style={Theme.h3} />
-        <View
-          style={[Theme.w100, Theme.h20, Theme.flexDirRow, Theme.justAlign]}>
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}>
+        <View style={TM.h3} />
+        <View style={[TM.w100, TM.h20, TM.flexDirRow, TM.justAlign]}>
+          <View style={[TM.w40, TM.h100, TM.justAlign]}>
             {showImage4 && !isClick4 && (
               <TouchableOpacity
-                style={[Theme.w100, Theme.h100, Theme.justAlign]}
+                style={[TM.w100, TM.h100, TM.justAlign]}
                 onPress={select4}>
                 {animal ? <AnimalImageComponet animal={animal} /> : null}
               </TouchableOpacity>
             )}
           </View>
-          <View style={[Theme.w10]} />
-          <View style={[Theme.w40, Theme.h100, Theme.justAlign]}></View>
+          <View style={[TM.w10]} />
+          <View style={[TM.w40, TM.h100, TM.justAlign]}></View>
         </View>
       </View>
     </ImageBackground>
