@@ -82,12 +82,14 @@ const InstuctionScreen = ({navigation}) => {
             showsVerticalScrollIndicator={false}>
             <AudioGameCardComponent
               LANG_NUM={lang}
+              LANG_INDEX={1}
               GAME_TITLE={AUDIO_GAME_LANG[lang][1]}
               GAME_STYLE={[TM.w80, TM.h60]}
               GAME_IMG={require('../assets/img/animal_gifs/monkey_jump.gif')}
             />
             <AudioGameCardComponent
               LANG_NUM={lang}
+              LANG_INDEX={2}
               GAME_TITLE={AUDIO_GAME_LANG[lang][2]}
               GAME_STYLE={[TM.w80, TM.h60]}
               GAME_IMG={require('../assets/img/animal_gifs/dog_run.gif')}
@@ -95,6 +97,7 @@ const InstuctionScreen = ({navigation}) => {
 
             <AudioGameCardComponent
               LANG_NUM={lang}
+              LANG_INDEX={3}
               GAME_TITLE={AUDIO_GAME_LANG[lang][3]}
               GAME_STYLE={[TM.w80, TM.h60]}
               GAME_IMG={require('../assets/img/animal_gifs/zebra_run.gif')}
@@ -102,6 +105,7 @@ const InstuctionScreen = ({navigation}) => {
 
             <AudioGameCardComponent
               LANG_NUM={lang}
+              LANG_INDEX={4}
               GAME_TITLE={AUDIO_GAME_LANG[lang][4]}
               GAME_STYLE={[TM.w90, TM.h40]}
               GAME_IMG={require('../assets/img/animal_gifs/bird_flying.gif')}
@@ -109,6 +113,7 @@ const InstuctionScreen = ({navigation}) => {
 
             <AudioGameCardComponent
               LANG_NUM={lang}
+              LANG_INDEX={5}
               GAME_TITLE={AUDIO_GAME_LANG[lang][5]}
               GAME_STYLE={[TM.w70, TM.h55]}
               GAME_IMG={require('../assets/img/animal_gifs/zebra_run.gif')}
@@ -116,6 +121,7 @@ const InstuctionScreen = ({navigation}) => {
 
             <AudioGameCardComponent
               LANG_NUM={lang}
+              LANG_INDEX={6}
               GAME_TITLE={AUDIO_GAME_LANG[lang][6]}
               GAME_STYLE={[TM.w90, TM.h60]}
               GAME_IMG={require('../assets/img/animals/rabbit-removebg-preview.png')}

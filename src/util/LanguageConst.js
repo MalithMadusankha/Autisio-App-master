@@ -103,4 +103,14 @@ export const AUDIO_GAME_LANG = [
   ],
 ];
 
+export const GAME_INSTRUCTION_SINHALA = [
+  'na',
+  'me sellama karanne thaaththa, amma saha daruwa ekka.',
+  'piya daruwage wam pette wadi wiya yuthuya.',
+  'mawa daruwage wam pette wadi wiya yuthuya.',
+  'kreedawa aramba kranawita, daruwa thiraya matha awadanaya yomu kala yuthuya.',
+  'thiraya',
+  'kreedawa',
+];
+
 export default MENU_LANGUAGES;
