@@ -6,16 +6,30 @@ import {
   Image,
   Text,
 } from 'react-native';
+import Sound from 'react-native-sound';
+import DogSound from '../assets/sound/dog.mp3';
+import MonkeySound from '../assets/sound/monkey.mp3';
+import HorseSound from '../assets/sound/horse.wav';
+import BirdsSound from '../assets/sound/bird.wav';
 import Theme from '../assets/theme/AxTheme';
 import {useNavigation} from '@react-navigation/native';
-import {ReadUser} from '../constants/constants';
+import {ReadLanguage, ReadUser} from '../constants/constants';
 import CreateNewGame from '../service/GameService';
+import MENU_LANGUAGES from '../util/LanguageConst';
 
 const TopBottomAnimalScreen = ({route}) => {
   const {animal} = route.params;
   const [currentImage, setCurrentImage] = useState(1);
   const [startTime, setStartTime] = useState(Date.now());
+  const [sound, setSound] = useState(null);
+  const [lang, setLang] = useState(0);
+
   const navigation = useNavigation();
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
 
   const SaveGame = async (duration, isWing) => {
     const value = await ReadUser();
@@ -31,7 +45,57 @@ const TopBottomAnimalScreen = ({route}) => {
     const res = await CreateNewGame(GameData);
   };
 
+  const loadSound = () => {
+    let clickSound = '';
+
+    switch (animal) {
+      case 'b':
+        clickSound = BirdsSound;
+        break;
+      case 'd':
+        clickSound = DogSound;
+        break;
+      case 'm':
+        clickSound = MonkeySound;
+        break;
+      case 'z':
+        clickSound = HorseSound;
+        break;
+      default:
+        break;
+    }
+
+    const newSound = new Sound(clickSound, error => {
+      if (error) {
+        console.log('Failed to load the sound', error);
+        return;
+      }
+      // When loaded successfully
+      console.log(
+        'Duration in seconds: ' +
+          newSound.getDuration() +
+          ' number of channels: ' +
+          newSound.getNumberOfChannels(),
+      );
+      setSound(newSound);
+    });
+  };
+
+  const ClickSoundBtn = () => {
+    if (sound) {
+      sound.stop(() => {
+        sound.play(success => {
+          if (!success) {
+            console.log('Playback failed due to audio decoding errors');
+          }
+        });
+      });
+    }
+  };
+
   useEffect(() => {
+    getLang();
+    loadSound();
     const imageSources = [
       require('../assets/img/animal_gifs/bird_flying.gif'),
       require('../assets/img/animals/bird.png'),
@@ -45,26 +109,29 @@ const TopBottomAnimalScreen = ({route}) => {
     const intervalId = setInterval(switchImage, 5000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, []); // eslint-disable-line
 
   const clickAnimal = async () => {
+    ClickSoundBtn();
     const currentTime = Date.now();
     const diff = currentTime - startTime;
     const duration = Math.floor(diff / 1000);
     // await SaveGame(duration, true);
-    if (currentImage === 1) {
-      navigation.navigate('WellDoneScreen', {
-        data: duration,
-        avg: 12,
-        isWin: true,
-      });
-    } else {
-      navigation.navigate('WellDoneScreen', {
-        data: duration,
-        avg: 12,
-        isWin: false,
-      });
-    }
+    setTimeout(() => {
+      if (currentImage === 1) {
+        navigation.navigate('WellDoneScreen', {
+          data: duration,
+          avg: 12,
+          isWin: true,
+        });
+      } else {
+        navigation.navigate('WellDoneScreen', {
+          data: duration,
+          avg: 12,
+          isWin: false,
+        });
+      }
+    }, 1000);
   };
 
   return (
@@ -87,11 +154,11 @@ const TopBottomAnimalScreen = ({route}) => {
           <Text
             style={[
               Theme.fBlack,
-              Theme.f25,
+              Theme.f22,
               Theme.fBold,
               Theme.txtAlignCenter,
             ]}>
-            Click on the button when the animal rests
+            {MENU_LANGUAGES[lang][10]}
           </Text>
         </View>
       </View>

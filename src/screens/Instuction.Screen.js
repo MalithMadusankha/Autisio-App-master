@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   Text,
@@ -8,75 +8,126 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
-import Theme from '../assets/theme/AxTheme';
-import GameCardComponent from '../components/GameCardComponent';
+import TM from '../assets/theme/AxTheme';
+import AudioGameCardComponent from '../components/AudioGameCardComponent';
 import PlayCardComponent from '../components/PlayCardComponent';
+import {ReadLanguage, SaveLanguage} from '../constants/constants';
+import {AUDIO_GAME_LANG} from '../util/LanguageConst';
 
 const InstuctionScreen = ({navigation}) => {
+  const [lang, setLang] = useState(0);
+
+  const langHandler = async num => {
+    await SaveLanguage(num);
+    setLang(num);
+  };
+
+  const getLanguage = async () => {
+    const language = await ReadLanguage();
+    console.log('LL', language);
+    setLang(language);
+  };
+
+  useEffect(() => {
+    getLanguage();
+  }, []);
+
   return (
-    <View style={[Theme.container, Theme.bgMain6, Theme.w100, Theme.h100]}>
-      <View style={[Theme.w100, Theme.h8, Theme.bgMain7, Theme.flexDirRow]}>
-        <View style={[Theme.w15, Theme.h100, Theme.justAlign]}>
+    <View style={[TM.container, TM.bgMain6, TM.w100, TM.h100]}>
+      <View style={[TM.w100, TM.h8, TM.bgMain7, TM.flexDirRow]}>
+        <View style={[TM.w15, TM.h100, TM.justAlign]}>
           <Image
             source={require('../assets/icons/menu-burger.png')}
             style={[styles.leftSide]}
           />
         </View>
-        <View style={[Theme.w85, Theme.h100, Theme.justifyCenter]}>
-          <Text style={[Theme.fWhite, Theme.f20, Theme.fBold]}>
-            Instructions for Game
+        <View style={[TM.w58, TM.h100, TM.justifyCenter]}>
+          <Text style={[TM.fWhite, TM.f20, TM.fBold]}>
+            {AUDIO_GAME_LANG[lang][0]}
           </Text>
         </View>
+        <View style={[TM.w25, TM.h100, TM.justifyCenter]}>
+          <View style={[TM.flexDirRow, TM.w100, TM.h80]}>
+            <TouchableOpacity
+              onPress={() => langHandler(1)}
+              style={[
+                TM.mt5,
+                TM.w50,
+                lang === 1 ? styles.bgBlue : TM.bgPurlLight,
+                TM.borBotLeftRad20,
+                TM.borTopLeftRad20,
+                TM.justAlign,
+              ]}>
+              <Text style={[TM.txtAlignCenter, TM.f14, TM.fWhite]}>සිං</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => langHandler(0)}
+              style={[
+                TM.mt5,
+                lang === 0 ? styles.bgBlue : TM.bgPurlLight,
+                TM.borTopRightRad20,
+                TM.w50,
+                TM.borBotRightRad20,
+                TM.justAlign,
+              ]}>
+              <Text style={[TM.txtAlignCenter, TM.f14, TM.fWhite]}>Eng</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
-      <View style={[Theme.w100, Theme.h92]}>
-        <SafeAreaView style={[Theme.w100, Theme.h100]}>
+      <View style={[TM.w100, TM.h92]}>
+        <SafeAreaView style={[TM.w100, TM.h100]}>
           <ScrollView
             style={styles.scrollView}
             showsVerticalScrollIndicator={false}>
-            <GameCardComponent
-              GAME_TITLE={'This game play with father, mother and child.'}
-              GAME_STYLE={[Theme.w80, Theme.h60]}
+            <AudioGameCardComponent
+              LANG_NUM={lang}
+              GAME_TITLE={AUDIO_GAME_LANG[lang][1]}
+              GAME_STYLE={[TM.w80, TM.h60]}
               GAME_IMG={require('../assets/img/animal_gifs/monkey_jump.gif')}
             />
-            <GameCardComponent
-              GAME_TITLE={'Father should be sit on left side of child.'}
-              GAME_STYLE={[Theme.w80, Theme.h60]}
+            <AudioGameCardComponent
+              LANG_NUM={lang}
+              GAME_TITLE={AUDIO_GAME_LANG[lang][2]}
+              GAME_STYLE={[TM.w80, TM.h60]}
               GAME_IMG={require('../assets/img/animal_gifs/dog_run.gif')}
             />
 
-            <GameCardComponent
-              GAME_TITLE={'Mother should be sit on right side of child.'}
-              GAME_STYLE={[Theme.w80, Theme.h60]}
+            <AudioGameCardComponent
+              LANG_NUM={lang}
+              GAME_TITLE={AUDIO_GAME_LANG[lang][3]}
+              GAME_STYLE={[TM.w80, TM.h60]}
               GAME_IMG={require('../assets/img/animal_gifs/zebra_run.gif')}
             />
 
-            <GameCardComponent
-              GAME_TITLE={'When game start, child should be focus on screen.'}
-              GAME_STYLE={[Theme.w90, Theme.h40]}
+            <AudioGameCardComponent
+              LANG_NUM={lang}
+              GAME_TITLE={AUDIO_GAME_LANG[lang][4]}
+              GAME_STYLE={[TM.w90, TM.h40]}
               GAME_IMG={require('../assets/img/animal_gifs/bird_flying.gif')}
             />
 
-            <GameCardComponent
-              GAME_TITLE={'Screen ask to speak father or Mother.'}
-              GAME_STYLE={[Theme.w70, Theme.h55]}
+            <AudioGameCardComponent
+              LANG_NUM={lang}
+              GAME_TITLE={AUDIO_GAME_LANG[lang][5]}
+              GAME_STYLE={[TM.w70, TM.h55]}
               GAME_IMG={require('../assets/img/animal_gifs/zebra_run.gif')}
             />
 
-            <GameCardComponent
-              GAME_TITLE={
-                'Game will detect child will response to father or mother.'
-              }
-              GAME_STYLE={[Theme.w90, Theme.h60]}
+            <AudioGameCardComponent
+              LANG_NUM={lang}
+              GAME_TITLE={AUDIO_GAME_LANG[lang][6]}
+              GAME_STYLE={[TM.w90, TM.h60]}
               GAME_IMG={require('../assets/img/animals/rabbit-removebg-preview.png')}
             />
 
             <PlayCardComponent
-              GAME_STYLE={[Theme.w90, Theme.h90]}
+              GAME_STYLE={[TM.w90, TM.h90]}
               GAME_IMG={require('../assets/img/play.gif')}
               GAME_ON_PRESS={() => navigation.navigate('audioAttentionGame')}
             />
 
-            <View style={[Theme.mb10]} />
+            <View style={[TM.mb10]} />
           </ScrollView>
         </SafeAreaView>
       </View>
@@ -88,6 +139,9 @@ const styles = StyleSheet.create({
   leftSide: {
     width: 30,
     height: 30,
+  },
+  bgBlue: {
+    backgroundColor: '#0b0c61fb',
   },
   scrollView: {
     marginHorizontal: 15,

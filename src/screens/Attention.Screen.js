@@ -1,4 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Sound from 'react-native-sound';
+
+import BgSound from '../assets/sound/videoplayback.mp3';
 import {
   Image,
   Text,
@@ -7,19 +10,34 @@ import {
   ScrollView,
   SafeAreaView,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import TM from '../assets/theme/AxTheme';
 import GameCardComponent from '../components/GameCardComponent';
 import ReportCardComponent from '../components/ReportCardComponent';
 
 import LogOut from '../assets/img/logout.png';
+import SoundPlayer from '../components/SoundPlayer';
+import MENU_LANGUAGES from '../util/LanguageConst';
+import {ReadLanguage, SaveLanguage} from '../constants/constants';
 
 const AttentionScreen = ({navigation}) => {
-  const [selectLang, setSelectLang] = useState(0);
+  const [lang, setLang] = useState(0);
 
-  const langHandler = num => {
-    setSelectLang(num);
+  const langHandler = async num => {
+    await SaveLanguage(num);
+    setLang(num);
   };
+
+  const getLanguage = async () => {
+    const language = await ReadLanguage();
+    console.log('LL', language);
+    setLang(language);
+  };
+
+  useEffect(() => {
+    getLanguage();
+  }, []);
 
   return (
     <View style={[TM.container, TM.bgMain6, TM.w100, TM.h100]}>
@@ -31,7 +49,9 @@ const AttentionScreen = ({navigation}) => {
           />
         </View>
         <View style={[TM.w45, TM.h100, TM.justifyCenter]}>
-          <Text style={[TM.fWhite, TM.f20, TM.fBold]}>Attention Games</Text>
+          <Text style={[TM.fWhite, lang === 1 ? TM.f18 : TM.f20, TM.fBold]}>
+            {MENU_LANGUAGES[lang][11]}
+          </Text>
         </View>
         <View style={[TM.w25, TM.h100, TM.justifyCenter]}>
           <View style={[TM.flexDirRow, TM.w100, TM.h80]}>
@@ -40,7 +60,7 @@ const AttentionScreen = ({navigation}) => {
               style={[
                 TM.mt5,
                 TM.w50,
-                selectLang === 1 ? styles.bgBlue : TM.bgPurlLight,
+                lang === 1 ? styles.bgBlue : TM.bgPurlLight,
                 TM.borBotLeftRad20,
                 TM.borTopLeftRad20,
                 TM.justAlign,
@@ -51,7 +71,7 @@ const AttentionScreen = ({navigation}) => {
               onPress={() => langHandler(0)}
               style={[
                 TM.mt5,
-                selectLang === 0 ? styles.bgBlue : TM.bgPurlLight,
+                lang === 0 ? styles.bgBlue : TM.bgPurlLight,
                 TM.borTopRightRad20,
                 TM.w50,
                 TM.borBotRightRad20,
@@ -68,25 +88,26 @@ const AttentionScreen = ({navigation}) => {
       </View>
       <View style={[TM.w100, TM.h92]}>
         <SafeAreaView style={[TM.w100, TM.h100]}>
+          <SoundPlayer />
           <ScrollView
             style={styles.scrollView}
             showsVerticalScrollIndicator={false}>
             <GameCardComponent
-              GAME_TITLE={'Focused Attention Games'}
+              GAME_TITLE={MENU_LANGUAGES[lang][0]}
               GAME_STYLE={[TM.w80, TM.h60]}
               GAME_IMG={require('../assets/img/animals/cartoon-cat.webp')}
               GAME_ON_PRESS={() => navigation.navigate('SelectAnimalsScreen')}
             />
 
             <GameCardComponent
-              GAME_TITLE={'Selective Attention Games'}
+              GAME_TITLE={MENU_LANGUAGES[lang][1]}
               GAME_STYLE={[TM.w80, TM.h60]}
               GAME_IMG={require('../assets/img/animals/dog.png')}
               GAME_ON_PRESS={() => navigation.navigate('GameLevelsScreen')}
             />
 
             <GameCardComponent
-              GAME_TITLE={'Divided Attention Games'}
+              GAME_TITLE={MENU_LANGUAGES[lang][2]}
               GAME_STYLE={[TM.w80, TM.h60]}
               GAME_IMG={require('../assets/img/animal_gifs/bird_flying.gif')}
               GAME_ON_PRESS={() =>
@@ -95,7 +116,7 @@ const AttentionScreen = ({navigation}) => {
             />
 
             <GameCardComponent
-              GAME_TITLE={'Sustained Attention Games'}
+              GAME_TITLE={MENU_LANGUAGES[lang][3]}
               GAME_STYLE={[TM.w90, TM.h40]}
               GAME_IMG={require('../assets/img/animals/fish.jpg')}
               GAME_ON_PRESS={() =>
@@ -104,13 +125,13 @@ const AttentionScreen = ({navigation}) => {
             />
 
             <GameCardComponent
-              GAME_TITLE={'Auditory Attention'}
+              GAME_TITLE={MENU_LANGUAGES[lang][4]}
               GAME_STYLE={[TM.w70, TM.h55]}
               GAME_IMG={require('../assets/img/others/boy-removebg-preview.png')}
               GAME_ON_PRESS={() => navigation.navigate('instructionsScreen')}
             />
             <ReportCardComponent
-              GAME_TITLE={'Report Summary'}
+              GAME_TITLE={MENU_LANGUAGES[lang][5]}
               GAME_STYLE={[TM.w80, TM.h60]}
               GAME_IMG={require('../assets/img/report.png')}
               GAME_ON_PRESS={() => navigation.navigate('reportSummaryScreen3')}

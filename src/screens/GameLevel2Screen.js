@@ -9,11 +9,14 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+import Sound from 'react-native-sound';
+import ClickSound from '../assets/sound/trra.mp3';
 import TM from '../assets/theme/AxTheme';
 import GameCard from '../components/GameCard';
 import {useNavigation} from '@react-navigation/native';
-import {ReadUser} from '../constants/constants';
+import {ReadLanguage, ReadUser} from '../constants/constants';
 import CreateNewGame from '../service/GameService';
+import MENU_LANGUAGES from '../util/LanguageConst';
 
 const GameLevel2Screen = () => {
   const cards = [
@@ -41,6 +44,13 @@ const GameLevel2Screen = () => {
   const [startTime, setStartTime] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [temp, setTemp] = useState(0);
+  const [sound, setSound] = useState(null);
+  const [lang, setLang] = useState(0);
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
 
   const SaveGame = async (duration, isWing) => {
     const value = await ReadUser();
@@ -56,9 +66,39 @@ const GameLevel2Screen = () => {
     const res = await CreateNewGame(GameData);
   };
 
-  useEffect(() => {
-    setTemp(require('../assets/icons/bee.png'));
+  const loadSound = () => {
+    const newSound = new Sound(ClickSound, error => {
+      if (error) {
+        console.log('Failed to load the sound', error);
+        return;
+      }
+      // When loaded successfully
+      console.log(
+        'Duration in seconds: ' +
+          newSound.getDuration() +
+          ' number of channels: ' +
+          newSound.getNumberOfChannels(),
+      );
+      setSound(newSound);
+    });
+  };
 
+  const ClickSoundBtn = () => {
+    if (sound) {
+      sound.stop(() => {
+        sound.play(success => {
+          if (!success) {
+            console.log('Playback failed due to audio decoding errors');
+          }
+        });
+      });
+    }
+  };
+
+  useEffect(() => {
+    getLang();
+    setTemp(require('../assets/icons/bee.png'));
+    loadSound();
     shuffleArrays();
     let intervalId;
     if (isTimerRunning) {
@@ -141,6 +181,7 @@ const GameLevel2Screen = () => {
   };
 
   const toggleImage = index => {
+    ClickSoundBtn();
     setCardPlacements(prevPlacements =>
       prevPlacements.map((placement, idx) => {
         if (idx === index) {
@@ -213,7 +254,7 @@ const GameLevel2Screen = () => {
           <View style={[TM.w5]} />
           <View style={[TM.w65, TM.h100, TM.justAlign]}>
             <Text style={[TM.fBlack, TM.f20, TM.fBold, TM.fWhite]}>
-              Choose this from below
+              {MENU_LANGUAGES[lang][8]}
             </Text>
           </View>
           <View style={[TM.w30, TM.h100, TM.justifyCenter]}>

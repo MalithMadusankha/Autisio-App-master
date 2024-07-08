@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Theme from '../assets/theme/AxTheme';
 import {
   Image,
@@ -7,8 +7,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {ReadLanguage} from '../constants/constants';
+import MENU_LANGUAGES from '../util/LanguageConst';
 
 const ReportSummaryScreen = () => {
+  const [lang, setLang] = useState(0);
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
+
+  useEffect(() => {
+    getLang();
+  }, []);
+
   return (
     <ImageBackground
       imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
@@ -28,7 +41,7 @@ const ReportSummaryScreen = () => {
           <View style={[Theme.w10]} />
           <View style={[Theme.w90, Theme.h100, Theme.justifyCenter]}>
             <Text style={[Theme.fBlack, Theme.f25, Theme.fBold]}>
-              Report Summary
+              {MENU_LANGUAGES[lang][5]}
             </Text>
           </View>
         </View>
@@ -59,7 +72,7 @@ const ReportSummaryScreen = () => {
       <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
         <TouchableOpacity
           style={[
-            Theme.w60,
+            lang === 1 ? Theme.w75 : Theme.w60,
             Theme.h38,
             Theme.ml2,
             Theme.bgBlack,
@@ -69,11 +82,11 @@ const ReportSummaryScreen = () => {
           <Text
             style={[
               Theme.fWhite,
-              Theme.f22,
+              lang === 1 ? Theme.f20 : Theme.f22,
               Theme.txtAlignCenter,
               Theme.fBold,
             ]}>
-            Go back to Menu
+            {MENU_LANGUAGES[lang][19]}
           </Text>
         </TouchableOpacity>
       </View>

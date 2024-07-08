@@ -575,6 +575,10 @@ const AxTheme = StyleSheet.create({
     width: '55%',
   },
 
+  w58: {
+    width: '58%',
+  },
+
   w60: {
     width: '60%',
   },

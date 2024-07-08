@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Theme from '../assets/theme/AxTheme';
 import {
   Dimensions,
@@ -10,6 +10,8 @@ import {
   View,
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import MENU_LANGUAGES from '../util/LanguageConst';
+import {ReadLanguage} from '../constants/constants';
 
 const WellDoneScreen = () => {
   const route = useRoute();
@@ -17,10 +19,18 @@ const WellDoneScreen = () => {
   const isWin = route.params?.isWin;
   const avg = route.params?.avg;
 
+  const [lang, setLang] = useState(0);
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
+
   useEffect(() => {
+    getLang();
     console.log(data);
     console.log(JSON.stringify(isWin));
-  }, []);
+  }, []); // eslint-disable-line
 
   const useNavigate = useNavigation();
 
@@ -70,7 +80,7 @@ const WellDoneScreen = () => {
         <View style={[Theme.w90, Theme.h30, Theme.justAlign]}>
           <TouchableOpacity
             style={[
-              Theme.w60,
+              lang === 1 ? Theme.w75 : Theme.w60,
               Theme.h38,
               Theme.ml2,
               Theme.bgBlack,
@@ -83,11 +93,11 @@ const WellDoneScreen = () => {
             <Text
               style={[
                 Theme.fWhite,
-                Theme.f25,
+                lang === 1 ? Theme.f22 : Theme.f25,
                 Theme.txtAlignCenter,
                 Theme.fBold,
               ]}>
-              Go to result
+              {MENU_LANGUAGES[lang][29]}
             </Text>
           </TouchableOpacity>
         </View>

@@ -2,11 +2,12 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Theme from '../assets/theme/AxTheme';
 import React from 'react';
 
-const GameCardComponent = ({
+const AudioGameCardComponent = ({
   GAME_ON_PRESS,
   GAME_TITLE,
   GAME_IMG,
   GAME_STYLE,
+  LANG_NUM,
 }) => {
   return (
     <>
@@ -26,7 +27,7 @@ const GameCardComponent = ({
             <Text
               style={[
                 Theme.fBlack,
-                Theme.f25,
+                LANG_NUM === 1 ? Theme.f18 : Theme.f25,
                 Theme.fBold,
                 Theme.txtAlignCenter,
               ]}>
@@ -45,7 +46,7 @@ const GameCardComponent = ({
 const styles = StyleSheet.create({
   cardStyles: {
     width: '100%',
-    height: 165,
+    height: 175,
     alignItems: 'center',
   },
   cardSpace: {
@@ -53,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GameCardComponent;
+export default AudioGameCardComponent;

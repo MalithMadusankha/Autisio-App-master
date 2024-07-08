@@ -43,6 +43,8 @@ yarn android
 cd android/
 ./gradlew clean
 
+or Delete build Directory
+
 # OR using npx
 npx react-native clean
 ```
@@ -56,4 +58,3 @@ npm run ios
 # OR using Yarn
 yarn ios
 ```
-

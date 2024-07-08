@@ -10,10 +10,12 @@ import {
 } from 'react-native';
 import Theme from '../assets/theme/AxTheme';
 import LavelCardComponent from '../components/LavelCardComponent';
+import SoundPlayer from '../components/SoundPlayer';
 
 const GameLevelsScreen = ({navigation}) => {
   return (
     <View style={[Theme.container, Theme.bgMain6, Theme.w100, Theme.h100]}>
+      <SoundPlayer />
       <View style={[Theme.w90, Theme.h10]}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}

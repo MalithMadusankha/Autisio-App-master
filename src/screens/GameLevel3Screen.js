@@ -3,16 +3,18 @@ import {
   View,
   Text,
   StyleSheet,
-  Alert,
   ImageBackground,
   TouchableOpacity,
   Image,
 } from 'react-native';
+import Sound from 'react-native-sound';
+import ClickSound from '../assets/sound/trra.mp3';
 import TM from '../assets/theme/AxTheme';
 import GameCard from '../components/GameCard';
 import {useNavigation} from '@react-navigation/native';
-import {ReadUser} from '../constants/constants';
+import {ReadLanguage, ReadUser} from '../constants/constants';
 import CreateNewGame from '../service/GameService';
+import MENU_LANGUAGES from '../util/LanguageConst';
 
 const GameLevel3Screen = () => {
   const cards = [
@@ -43,6 +45,13 @@ const GameLevel3Screen = () => {
   const [startTime, setStartTime] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [temp, setTemp] = useState(0);
+  const [sound, setSound] = useState(null);
+  const [lang, setLang] = useState(0);
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
 
   const SaveGame = async (duration, isWing) => {
     const value = await ReadUser();
@@ -58,9 +67,39 @@ const GameLevel3Screen = () => {
     const res = await CreateNewGame(GameData);
   };
 
-  useEffect(() => {
-    setTemp(require('../assets/icons/parrot.png'));
+  const loadSound = () => {
+    const newSound = new Sound(ClickSound, error => {
+      if (error) {
+        console.log('Failed to load the sound', error);
+        return;
+      }
+      // When loaded successfully
+      console.log(
+        'Duration in seconds: ' +
+          newSound.getDuration() +
+          ' number of channels: ' +
+          newSound.getNumberOfChannels(),
+      );
+      setSound(newSound);
+    });
+  };
 
+  const ClickSoundBtn = () => {
+    if (sound) {
+      sound.stop(() => {
+        sound.play(success => {
+          if (!success) {
+            console.log('Playback failed due to audio decoding errors');
+          }
+        });
+      });
+    }
+  };
+
+  useEffect(() => {
+    getLang();
+    setTemp(require('../assets/icons/parrot.png'));
+    loadSound();
     shuffleArrays();
     let intervalId;
     if (isTimerRunning) {
@@ -143,6 +182,7 @@ const GameLevel3Screen = () => {
   };
 
   const toggleImage = index => {
+    ClickSoundBtn();
     setCardPlacements(prevPlacements =>
       prevPlacements.map((placement, idx) => {
         if (idx === index) {
@@ -212,7 +252,7 @@ const GameLevel3Screen = () => {
           </TouchableOpacity>
           <View style={[TM.w60, TM.h100, TM.justAlign]}>
             <Text style={[TM.fBlack, TM.f20, TM.fBold, TM.fWhite]}>
-              Choose this from below
+              {MENU_LANGUAGES[lang][8]}
             </Text>
           </View>
           <View style={[TM.w30, TM.h100, TM.justifyCenter]}>
