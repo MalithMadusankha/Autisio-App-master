@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   Text,
@@ -11,8 +11,21 @@ import {
 import Theme from '../assets/theme/AxTheme';
 import LavelCardComponent from '../components/LavelCardComponent';
 import SoundPlayer from '../components/SoundPlayer';
+import {ReadLanguage} from '../constants/constants';
+import MENU_LANGUAGES from '../util/LanguageConst';
 
 const GameLevelsScreen = ({navigation}) => {
+  const [lang, setLang] = useState(0);
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
+
+  useEffect(() => {
+    getLang();
+  }, []);
+
   return (
     <View style={[Theme.container, Theme.bgMain6, Theme.w100, Theme.h100]}>
       <SoundPlayer />
@@ -32,25 +45,25 @@ const GameLevelsScreen = ({navigation}) => {
             style={styles.scrollView}
             showsVerticalScrollIndicator={false}>
             <LavelCardComponent
-              GAME_TITLE={'Lavel 1'}
-              LEVEL_LIMIT={'This leve for age 5'}
+              GAME_TITLE={`${MENU_LANGUAGES[lang][30]} 1`}
+              LEVEL_LIMIT={`${MENU_LANGUAGES[lang][31]}`}
               GAME_STYLE={[Theme.w100, Theme.h50]}
               GAME_IMG={require('../assets/icons/butterfly.png')}
               GAME_ON_PRESS={() => navigation.navigate('GameLevel1Screen')}
             />
 
             <LavelCardComponent
-              GAME_TITLE={'Lavel 2'}
-              LEVEL_LIMIT={'This leve for age 6'}
+              GAME_TITLE={`${MENU_LANGUAGES[lang][30]} 2`}
+              LEVEL_LIMIT={`${MENU_LANGUAGES[lang][32]}`}
               GAME_STYLE={[Theme.w100, Theme.h60]}
               GAME_IMG={require('../assets/icons/bee.png')}
               GAME_ON_PRESS={() => navigation.navigate('GameLevel2Screen')}
             />
 
             <LavelCardComponent
-              GAME_TITLE={'Lavel 3'}
+              GAME_TITLE={`${MENU_LANGUAGES[lang][30]} 3`}
+              LEVEL_LIMIT={`${MENU_LANGUAGES[lang][33]}`}
               GAME_STYLE={[Theme.w100, Theme.h60]}
-              LEVEL_LIMIT={'This leve for age 7'}
               GAME_IMG={require('../assets/icons/parrot.png')}
               GAME_ON_PRESS={() => navigation.navigate('GameLevel3Screen')}
             />

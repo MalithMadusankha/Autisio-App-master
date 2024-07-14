@@ -30,6 +30,10 @@ const MENU_LANGUAGES = [
     ' Lost Game', // 27
     'Go To Next',
     'Go to Result',
+    'Level',
+    'This leve for age 5',
+    'This leve for age 6',
+    'This leve for age 7',
   ],
   [
     'අවධානය යොමු කරන ක්‍රීඩා',
@@ -62,6 +66,10 @@ const MENU_LANGUAGES = [
     ' පරාජයඋ තරගය',
     'ඊළඟට',
     'ප්‍රතිඵලය වෙත යන්න',
+    'අදියර',
+    'මෙම අදියරය වයස අවරුදු 5',
+    'මෙම අදියරය වයස අවරුදු 6',
+    'මෙම අදියරය වයස අවරුදු 7',
   ],
 ];
 
@@ -88,7 +96,7 @@ export const AUDIO_GAME_LANG = [
   ],
   [
     'ක්‍රීඩාව සඳහා උපදෙස්',
-    'මේ සෙල්ලම කරන්නේ තාත්තා, අම්මා සහ දරුවා එක්ක.',
+    'මේ සෙල්ලම කරන්නේ දරුවා තාත්තා සහ අම්මා සමඟ.',
     'පියා දරුවාගේ වම් පැත්තේ වාඩි විය යුතුය.',
     'මව දරුවාගේ දකුණු පැත්තේ වාඩි විය යුතුය.',
     'ක්‍රීඩාව ආරම්භ කරන විට, දරුවා තිරය මත අවධානය යොමු කළ යුතුය.',
@@ -105,12 +113,12 @@ export const AUDIO_GAME_LANG = [
 
 export const GAME_INSTRUCTION_SINHALA = [
   'na',
-  'me sellama karanne thaaththa, amma saha daruwa ekka.',
-  'piya daruwage wam pette wadi wiya yuthuya.',
-  'mawa daruwage wam pette wadi wiya yuthuya.',
+  'me sellama karanne dharuwa thaaththa saha amma samaga.',
+  'piya dharuwage wam peththae wadiwenna.',
+  'mawa dharuwage wam pette wadi wiya yuthuya.',
   'kreedawa aramba kranawita, daruwa thiraya matha awadanaya yomu kala yuthuya.',
-  'thiraya',
-  'kreedawa',
+  'thiraye penwanne katha kranna thaththa ho katha kranna amma yanna anuwa mapiyan daruwa amathima awashya we ',
+  'kreedawa daruwa piyata homawata prathichara dakwana bawa haduna gani',
 ];
 
 export default MENU_LANGUAGES;
