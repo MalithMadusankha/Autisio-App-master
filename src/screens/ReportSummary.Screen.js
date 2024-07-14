@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Theme from '../assets/theme/AxTheme';
 import {
   Dimensions,
@@ -10,10 +10,24 @@ import {
   View,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {ReadLanguage} from '../constants/constants';
+import MENU_LANGUAGES from '../util/LanguageConst';
 
 const ReportSummaryScreen = ({route}) => {
   const {data, avg, isWin} = route.params;
   const navigation = useNavigation();
+
+  const [lang, setLang] = useState(0);
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
+
+  useEffect(() => {
+    getLang();
+  }, []);
+
   return (
     <ImageBackground
       imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
@@ -24,46 +38,46 @@ const ReportSummaryScreen = ({route}) => {
           <View style={[Theme.w10]} />
           <View style={[Theme.w90, Theme.h100, Theme.justifyCenter]}>
             <Text style={[Theme.fBlack, Theme.f25, Theme.fBold]}>
-              Report Summary
+              {MENU_LANGUAGES[lang][5]}
             </Text>
           </View>
         </View>
 
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Time taken by average normal child for a single response - {avg} s
+            {MENU_LANGUAGES[lang][20]} - {avg} s
           </Text>
         </View>
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Time taken by your child for a single response - {data} s
+            {MENU_LANGUAGES[lang][21]} - {data} s
           </Text>
         </View>
 
         {data < avg ? (
           <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
             <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-              Your child is very good
+              {MENU_LANGUAGES[lang][22]}
             </Text>
           </View>
         ) : data < avg + 11 ? (
           <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
             <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-              Your child is good, Try to improve
+              {MENU_LANGUAGES[lang][23]}
             </Text>
           </View>
         ) : (
           <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
             <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-              Your child need more attention
+              {MENU_LANGUAGES[lang][24]}
             </Text>
           </View>
         )}
 
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
           <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            You have
-            {isWin ? ' WIN game' : ' Lost game'}.
+            {MENU_LANGUAGES[lang][25]}
+            {isWin ? MENU_LANGUAGES[lang][26] : MENU_LANGUAGES[lang][27]}.
           </Text>
         </View>
       </View>
@@ -73,7 +87,7 @@ const ReportSummaryScreen = ({route}) => {
       <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
         <TouchableOpacity
           style={[
-            Theme.w60,
+            lang === 1 ? Theme.w75 : Theme.w60,
             Theme.h38,
             Theme.ml2,
             Theme.bgBlack,
@@ -84,11 +98,11 @@ const ReportSummaryScreen = ({route}) => {
           <Text
             style={[
               Theme.fWhite,
-              Theme.f22,
+              lang === 1 ? Theme.f20 : Theme.f22,
               Theme.txtAlignCenter,
               Theme.fBold,
             ]}>
-            Go back to Menu
+            {MENU_LANGUAGES[lang][19]}
           </Text>
         </TouchableOpacity>
       </View>

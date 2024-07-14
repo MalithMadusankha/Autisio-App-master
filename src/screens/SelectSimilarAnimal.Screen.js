@@ -9,9 +9,11 @@ import {
   ToastAndroid,
 } from 'react-native';
 import Theme from '../assets/theme/AxTheme';
-import {LogBox} from 'react-native';
-import {ReadUser} from '../constants/constants';
+import {ReadLanguage, ReadUser} from '../constants/constants';
 import CreateNewGame from '../service/GameService';
+import Sound from 'react-native-sound';
+import ClickSound from '../assets/sound/trra.mp3';
+import MENU_LANGUAGES from '../util/LanguageConst';
 
 let cow = false;
 let cat = false;
@@ -34,6 +36,13 @@ const SelectSimilarAnimalScreen = ({navigation}) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [intArr, setIntArr] = useState([]);
   const [startTime, setStartTime] = useState(Date.now());
+  const [sound, setSound] = useState(null);
+  const [lang, setLang] = useState(0);
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
 
   const SaveGame = async (duration, isWing) => {
     const value = await ReadUser();
@@ -49,7 +58,38 @@ const SelectSimilarAnimalScreen = ({navigation}) => {
     const res = await CreateNewGame(GameData);
   };
 
+  const loadSound = () => {
+    const newSound = new Sound(ClickSound, error => {
+      if (error) {
+        console.log('Failed to load the sound', error);
+        return;
+      }
+      // When loaded successfully
+      console.log(
+        'Duration in seconds: ' +
+          newSound.getDuration() +
+          ' number of channels: ' +
+          newSound.getNumberOfChannels(),
+      );
+      setSound(newSound);
+    });
+  };
+
+  const ClickSoundBtn = () => {
+    if (sound) {
+      sound.stop(() => {
+        sound.play(success => {
+          if (!success) {
+            console.log('Playback failed due to audio decoding errors');
+          }
+        });
+      });
+    }
+  };
+
   useEffect(() => {
+    getLang();
+    loadSound();
     // console.log('================ Start ====================');
     // console.log('startTime', startTime);
     Shuffle();
@@ -74,6 +114,7 @@ const SelectSimilarAnimalScreen = ({navigation}) => {
   };
 
   const checkClickImage = async () => {
+    ClickSoundBtn();
     // console.log('selectedImage', selectedImage);
     // console.log('selectedImageIndex', selectedImageIndex);
     // console.log('imageUrlsChose', imageUrlsChose);
@@ -156,11 +197,11 @@ const SelectSimilarAnimalScreen = ({navigation}) => {
           <Text
             style={[
               Theme.fBlack,
-              Theme.f25,
+              Theme.f22,
               Theme.fBold,
               Theme.txtAlignCenter,
             ]}>
-            Click on the below image when 2 images match
+            {MENU_LANGUAGES[lang][9]}
           </Text>
         </View>
       </View>

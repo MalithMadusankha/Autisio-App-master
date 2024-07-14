@@ -1,13 +1,22 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Theme from '../assets/theme/AxTheme';
 import React from 'react';
+import Tts from 'react-native-tts';
+import {GAME_INSTRUCTION_SINHALA} from '../util/LanguageConst';
 
-const GameCardComponent = ({
-  GAME_ON_PRESS,
+const AudioGameCardComponent = ({
   GAME_TITLE,
   GAME_IMG,
   GAME_STYLE,
+  LANG_NUM,
+  LANG_INDEX,
 }) => {
+  const speakHandler = () => {
+    const speechText =
+      LANG_NUM === 0 ? GAME_TITLE : GAME_INSTRUCTION_SINHALA[LANG_INDEX];
+    Tts.speak(speechText);
+  };
+
   return (
     <>
       <View style={styles.cardSpace} />
@@ -20,13 +29,13 @@ const GameCardComponent = ({
             Theme.flexDirRow,
             Theme.bgMain3,
           ]}
-          onPress={GAME_ON_PRESS}>
+          onPress={speakHandler}>
           <View style={[Theme.w10]} />
           <View style={[Theme.w60, Theme.h100, Theme.justAlign]}>
             <Text
               style={[
                 Theme.fBlack,
-                Theme.f25,
+                LANG_NUM === 1 ? Theme.f18 : Theme.f22,
                 Theme.fBold,
                 Theme.txtAlignCenter,
               ]}>
@@ -45,7 +54,7 @@ const GameCardComponent = ({
 const styles = StyleSheet.create({
   cardStyles: {
     width: '100%',
-    height: 165,
+    height: 175,
     alignItems: 'center',
   },
   cardSpace: {
@@ -53,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GameCardComponent;
+export default AudioGameCardComponent;

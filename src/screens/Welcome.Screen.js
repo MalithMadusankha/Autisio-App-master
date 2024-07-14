@@ -8,43 +8,56 @@ import {
   Animated,
   TouchableOpacity,
 } from 'react-native';
-import Theme from '../assets/theme/AxTheme';
+import TM from '../assets/theme/AxTheme';
 
 const WelcomeScreen = ({navigation}) => {
-  const SCREEN_WIDTH = Dimensions.get('screen').width;
-  const SCREEN_HEIGHT = Dimensions.get('screen').height;
+  const SCREEN_WIDTH = 1; // Dimensions.get('screen').width;
+  const SCREEN_HEIGHT = 1; // Dimensions.get('screen').height;
   const [height, setHeight] = useState(0.1);
+  const [width, setWidth] = useState(0.1);
+  const [name, setName] = useState('none');
 
   useEffect(() => {
     setTimeout(() => {
-      setHeight(0.2);
+      setHeight(10);
+      setWidth(10);
     }, 400);
     setTimeout(() => {
-      setHeight(0.3);
+      setHeight(20);
+      setWidth(20);
     }, 600);
     setTimeout(() => {
-      setHeight(0.4);
+      setHeight(30);
+      setWidth(30);
     }, 800);
     setTimeout(() => {
-      setHeight(0.45);
+      setHeight(40);
+      setWidth(40);
     }, 900);
     setTimeout(() => {
-      setHeight(0.5);
+      setHeight(50);
+      setWidth(50);
     }, 1000);
     setTimeout(() => {
-      setHeight(0.55);
+      setHeight(70);
+      setWidth(70);
     }, 1100);
     setTimeout(() => {
-      setHeight(0.6);
+      setHeight(80);
+      setWidth(80);
     }, 1200);
     setTimeout(() => {
-      setHeight(0.65);
+      setHeight(90);
+      setWidth(90);
     }, 1300);
     setTimeout(() => {
-      setHeight(0.7);
+      setHeight(100);
+      setWidth(100);
     }, 1400);
     setTimeout(() => {
-      setHeight(0.734);
+      setName('flex');
+      setHeight(110);
+      setWidth(110);
     }, 1500);
     setTimeout(() => {
       navigation.navigate('TermsScreen');
@@ -52,11 +65,17 @@ const WelcomeScreen = ({navigation}) => {
   }, []); // eslint-disable-line
 
   return (
-    <View style={[Theme.container, Theme.bgWelCome, Theme.w100, Theme.h100]}>
+    <View style={[TM.container, TM.bgWelCome, TM.w100, TM.h100]}>
       <Image
-        source={require('../assets/img/logo_t.png')}
-        style={{width: SCREEN_WIDTH, height: SCREEN_HEIGHT * height}}
+        source={require('../assets/img/logo.png')}
+        style={{width: SCREEN_WIDTH * width, height: SCREEN_HEIGHT * height}}
       />
+      <View style={[TM.mt10, {display: name}]}>
+        <Image
+          source={require('../assets/img/name.png')}
+          style={{width: 180, height: 110}}
+        />
+      </View>
     </View>
   );
 };

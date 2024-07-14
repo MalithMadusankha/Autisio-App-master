@@ -11,18 +11,28 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import CardComponent from '../components/CardComponent';
-import {ReadUser} from '../constants/constants';
+import {ReadLanguage, ReadUser} from '../constants/constants';
+import SoundPlayer from '../components/SoundPlayer';
+import MENU_LANGUAGES, {ANIMAL_LANGUAGES} from '../util/LanguageConst';
 
 const SelectAnimalsScreen = ({navigation}) => {
   const SCREEN_HEIGHT = Dimensions.get('screen').height;
   const [age, setAge] = useState(5);
+  const [lang, setLang] = useState(0);
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
 
   const getUser = async () => {
     const userData = await ReadUser();
     setAge(userData.age);
   };
+
   useEffect(() => {
     // getUser();
+    getLang();
   }, []);
 
   return (
@@ -30,6 +40,7 @@ const SelectAnimalsScreen = ({navigation}) => {
       scrollEnabled={false}
       style={[{height: SCREEN_HEIGHT}]}>
       <View style={[{height: SCREEN_HEIGHT}]}>
+        <SoundPlayer />
         <View style={[Theme.container, Theme.bgMain1, Theme.w100, Theme.h100]}>
           <ImageBackground
             imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
@@ -49,17 +60,17 @@ const SelectAnimalsScreen = ({navigation}) => {
               <Text
                 style={[
                   Theme.fBlack,
-                  Theme.f32,
+                  Theme.f27,
                   Theme.fBold,
                   Theme.txtAlignCenter,
                 ]}>
-                Select your favourite animal
+                {MENU_LANGUAGES[lang][6]}
               </Text>
             </View>
             <View style={[Theme.w90, Theme.h25, Theme.flexDirRow]}>
               <View style={[Theme.w48, Theme.h100]}>
                 <CardComponent
-                  CARD_TITLE={'Bird'}
+                  CARD_TITLE={ANIMAL_LANGUAGES[lang][0]}
                   CARD_IMG_STYLE={[Theme.w70, Theme.h70]}
                   CARD_ON_PRESS={() =>
                     navigation.navigate(`ClickAnimalScreen${age}`, {
@@ -75,7 +86,7 @@ const SelectAnimalsScreen = ({navigation}) => {
 
               <View style={[Theme.w48, Theme.h100]}>
                 <CardComponent
-                  CARD_TITLE={'Dog'}
+                  CARD_TITLE={ANIMAL_LANGUAGES[lang][1]}
                   CARD_IMG_STYLE={[Theme.w70, Theme.h70]}
                   CARD_IMG={require('../assets/img/animals/dog.png')}
                   CARD_BG={[Theme.bgMain2, Theme.borderRadius20]}
@@ -91,7 +102,7 @@ const SelectAnimalsScreen = ({navigation}) => {
             <View style={[Theme.w90, Theme.h25, Theme.flexDirRow]}>
               <View style={[Theme.w48, Theme.h100]}>
                 <CardComponent
-                  CARD_TITLE={'Monkey'}
+                  CARD_TITLE={ANIMAL_LANGUAGES[lang][2]}
                   CARD_IMG_STYLE={[Theme.w70, Theme.h70]}
                   CARD_IMG={require('../assets/img/animals/monkey.png')}
                   CARD_BG={[Theme.bgMain4, Theme.borderRadius20]}
@@ -107,7 +118,7 @@ const SelectAnimalsScreen = ({navigation}) => {
 
               <View style={[Theme.w48, Theme.h100]}>
                 <CardComponent
-                  CARD_TITLE={'Zebra'}
+                  CARD_TITLE={ANIMAL_LANGUAGES[lang][3]}
                   CARD_IMG_STYLE={[Theme.w95, Theme.h70]}
                   CARD_IMG={require('../assets/img/animals/zebra.png')}
                   CARD_BG={[Theme.bgMain5, Theme.borderRadius20]}

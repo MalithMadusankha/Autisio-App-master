@@ -5,7 +5,7 @@ const AxTheme = StyleSheet.create({
     backgroundColor: '#FFAD4A',
   },
   bgWelCome: {
-    backgroundColor: '#fae8ef',
+    backgroundColor: '#FFDD00',
   },
 
   bgMain1: {
@@ -573,6 +573,10 @@ const AxTheme = StyleSheet.create({
 
   w55: {
     width: '55%',
+  },
+
+  w58: {
+    width: '58%',
   },
 
   w60: {

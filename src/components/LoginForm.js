@@ -11,6 +11,7 @@ import {
 import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TM from '../assets/theme/AxTheme';
+import {SaveLanguage} from '../constants/constants';
 
 const LoginForm = ({navigation}) => {
   const [name, setName] = useState('');
@@ -18,7 +19,8 @@ const LoginForm = ({navigation}) => {
   const [gender, setGender] = useState('male');
   const [selectLang, setSelectLang] = useState(0);
 
-  const langHandler = num => {
+  const langHandler = async num => {
+    await SaveLanguage(num);
     setSelectLang(num);
   };
 

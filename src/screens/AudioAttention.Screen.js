@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import Theme from '../assets/theme/AxTheme';
 import VideoRecorder from '../components/video/VideoRecorder';
+import {ReadLanguage} from '../constants/constants';
+import {AUDIO_GAME_LANG} from '../util/LanguageConst';
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
 const SCREEN_WIDTH = Dimensions.get('screen').width;
@@ -30,35 +32,46 @@ const AudioAttentionScreen = ({navigation}) => {
 
   const [resArr, setResArr] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [lang, setLang] = useState(0);
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
 
   useEffect(() => {
+    getLang();
+    // start father
     setTimeout(() => {
       setShowImage1(false);
       setShowImage2(true);
       setSpeakFather(true);
-    }, 5000);
-
+    }, 6000);
+    // stop father
     setTimeout(() => {
       setShowImage2(false);
       setShowImage3(true);
       setSpeakFather(false);
-    }, 11000);
+    }, 14000);
 
     setTimeout(() => {
       setShowImage3(false);
       setShowImage4(true);
-    }, 16000);
+    }, 20000);
 
+    // start mother
     setTimeout(() => {
       setShowImage4(false);
       setShowImage5(true);
       setSpeakMother(true);
-    }, 21000);
+    }, 24000);
+
+    // stop mother
     setTimeout(() => {
       setShowImage5(false);
       setShowImage6(true);
       setSpeakMother(false);
-    }, 27000);
+    }, 32000);
 
     setTimeout(() => {
       setShowImage6(false);
@@ -73,12 +86,12 @@ const AudioAttentionScreen = ({navigation}) => {
     setTimeout(() => {
       setShowImage8(false);
       setIsLoading(true);
-    }, 40000);
+    }, 44000);
     setTimeout(() => {
       if (!isLoading) {
         navigation.navigate('audioReportSummaryScreen', {resArr});
       }
-    }, 45000);
+    }, 50000);
   }, []); // eslint-disable-line
 
   const select1 = () => {
@@ -119,12 +132,12 @@ const AudioAttentionScreen = ({navigation}) => {
       {speakFather && (
         <Text
           style={[Theme.fBlack, Theme.f20, Theme.fBold, Theme.txtAlignCenter]}>
-          Speak Father . . . .
+          {AUDIO_GAME_LANG[lang][7]} . . . .
         </Text>
       )}
       {speakMother && (
         <Text style={[Theme.fBlack, Theme.f20, Theme.fBold]}>
-          Speak Mother . . . .
+          {AUDIO_GAME_LANG[lang][8]} . . . .
         </Text>
       )}
       {isLoading ? <ActivityIndicator size="large" color="#0000ff" /> : null}

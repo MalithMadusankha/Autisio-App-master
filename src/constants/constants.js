@@ -18,4 +18,19 @@ export const ReadUser = async () => {
   }
 };
 
+export const ReadLanguage = async () => {
+  try {
+    const value = await AsyncStorage.getItem('language');
+    if (value !== null) {
+      console.log('v ', value);
+      return JSON.parse(value);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const SaveLanguage = async num =>
+  await AsyncStorage.setItem('language', JSON.stringify(num));
+
 export default ENDPOINT;

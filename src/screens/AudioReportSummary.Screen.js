@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Theme from '../assets/theme/AxTheme';
 import {
   Image,
@@ -8,9 +8,22 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {ReadLanguage} from '../constants/constants';
+import MENU_LANGUAGES, {AUDIO_GAME_LANG} from '../util/LanguageConst';
 
 const AudioReportSummaryScreen = ({navigation, route}) => {
   const {resArr} = route.params;
+
+  const [lang, setLang] = useState(0);
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
+
+  useEffect(() => {
+    getLang();
+  }, []);
 
   return (
     <ImageBackground
@@ -32,32 +45,34 @@ const AudioReportSummaryScreen = ({navigation, route}) => {
           <View style={[Theme.w10]} />
           <View style={[Theme.w90, Theme.h100, Theme.justifyCenter]}>
             <Text style={[Theme.fBlack, Theme.f25, Theme.fBold]}>
-              Report Summary
+              {MENU_LANGUAGES[lang][5]}
             </Text>
           </View>
         </View>
         {/* left */}
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
-          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Child respond to the father's voice -{' '}
-            {resArr[0] > 0 ? 'Well Done ' : 'Not Good'}
+          <Text style={[Theme.fBlack, Theme.f22, Theme.txtAlignCenter]}>
+            {AUDIO_GAME_LANG[lang][9]} -{' '}
+            {resArr[0] > 0
+              ? MENU_LANGUAGES[lang][17]
+              : MENU_LANGUAGES[lang][18]}
           </Text>
         </View>
         {/* right */}
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
-          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            Child respond to the mother's voice -{' '}
-            {resArr[1] < 0 ? 'Well Done ' : 'Not Good'}
+          <Text style={[Theme.fBlack, Theme.f22, Theme.txtAlignCenter]}>
+            {AUDIO_GAME_LANG[lang][9]} -{' '}
+            {resArr[1] < 0
+              ? MENU_LANGUAGES[lang][17]
+              : MENU_LANGUAGES[lang][18]}
           </Text>
         </View>
 
         <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
-          <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-            {resArr[0] > 0 && resArr[1] < 0
-              ? "Finaly child has good attention to mother and father's voice"
-              : null}
+          <Text style={[Theme.fBlack, Theme.f22, Theme.txtAlignCenter]}>
+            {resArr[0] > 0 && resArr[1] < 0 ? AUDIO_GAME_LANG[lang][11] : null}
             {resArr[0] <= 0 && resArr[1] >= 0
-              ? "Finaly child dose not have good attention to mother and father's voice"
+              ? AUDIO_GAME_LANG[lang][12]
               : null}
           </Text>
         </View>
@@ -68,7 +83,7 @@ const AudioReportSummaryScreen = ({navigation, route}) => {
         <TouchableOpacity
           onPress={() => navigation.navigate('AttentionScreen')}
           style={[
-            Theme.w60,
+            lang === 1 ? Theme.w75 : Theme.w60,
             Theme.h38,
             Theme.ml2,
             Theme.bgBlack,
@@ -78,11 +93,11 @@ const AudioReportSummaryScreen = ({navigation, route}) => {
           <Text
             style={[
               Theme.fWhite,
-              Theme.f22,
+              lang === 1 ? Theme.f20 : Theme.f22,
               Theme.txtAlignCenter,
               Theme.fBold,
             ]}>
-            Go back to Menu
+            {MENU_LANGUAGES[lang][19]}
           </Text>
         </TouchableOpacity>
       </View>

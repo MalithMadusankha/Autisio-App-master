@@ -4,17 +4,19 @@ import {
   Text,
   StyleSheet,
   View,
-  Button,
-  Dimensions,
-  Animated,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
+import Sound from 'react-native-sound';
+import DogSound from '../assets/sound/dog.mp3';
+import MonkeySound from '../assets/sound/monkey.mp3';
+import HorseSound from '../assets/sound/horse.wav';
+import BirdsSound from '../assets/sound/bird.wav';
 import Theme from '../assets/theme/AxTheme';
 import {useNavigation} from '@react-navigation/native';
 import AnimalImageComponet from '../components/AnimalImageComponet';
 import CreateNewGame from '../service/GameService';
-import {ReadUser} from '../constants/constants';
+import {ReadLanguage, ReadUser} from '../constants/constants';
+import MENU_LANGUAGES from '../util/LanguageConst';
 
 const ClickAnimalScreen7 = ({route}) => {
   const {animal} = route.params;
@@ -29,8 +31,63 @@ const ClickAnimalScreen7 = ({route}) => {
   const [isControl, setisControl] = useState(true);
   const [startTime, setStartTime] = useState(Date.now());
   const [isNav, setIsNav] = useState(false);
+  const [sound, setSound] = useState(null);
+  const [lang, setLang] = useState(0);
 
   const useNavigate = useNavigation();
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
+
+  const loadSound = () => {
+    let clickSound = '';
+
+    switch (animal) {
+      case 'b':
+        clickSound = BirdsSound;
+        break;
+      case 'd':
+        clickSound = DogSound;
+        break;
+      case 'm':
+        clickSound = MonkeySound;
+        break;
+      case 'z':
+        clickSound = HorseSound;
+        break;
+      default:
+        break;
+    }
+
+    const newSound = new Sound(clickSound, error => {
+      if (error) {
+        console.log('Failed to load the sound', error);
+        return;
+      }
+      // When loaded successfully
+      console.log(
+        'Duration in seconds: ' +
+          newSound.getDuration() +
+          ' number of channels: ' +
+          newSound.getNumberOfChannels(),
+      );
+      setSound(newSound);
+    });
+  };
+
+  const BirdSound = () => {
+    if (sound) {
+      sound.stop(() => {
+        sound.play(success => {
+          if (!success) {
+            console.log('Playback failed due to audio decoding errors');
+          }
+        });
+      });
+    }
+  };
 
   const nextButton = () => {
     const currentTime = Date.now();
@@ -60,6 +117,8 @@ const ClickAnimalScreen7 = ({route}) => {
   };
 
   useEffect(() => {
+    getLang();
+    loadSound();
     console.log('ClickAnimalScreen7');
     setTimeout(() => {
       setShowImage1(false);
@@ -80,7 +139,7 @@ const ClickAnimalScreen7 = ({route}) => {
       setShowImage4(false);
       setisControl(true);
       setIsNav(true);
-    }, 12000);
+    }, 13000);
     return () => {
       clearTimeout(timeId);
     };
@@ -90,44 +149,57 @@ const ClickAnimalScreen7 = ({route}) => {
     const seconds = Math.floor(time / 1000) % 60;
     return seconds;
   };
+
   const select1 = () => {
-    setIsClick1(true);
-    setShowImage1(false);
-    setShowImage2(true);
+    BirdSound();
+    setTimeout(() => {
+      setIsClick1(true);
+      setShowImage1(false);
+      setShowImage2(true);
+    }, 500);
   };
   const select2 = () => {
-    setIsClick2(true);
-    setShowImage2(false);
-    setShowImage3(true);
+    BirdSound();
+    setTimeout(() => {
+      setIsClick2(true);
+      setShowImage2(false);
+      setShowImage3(true);
+    }, 500);
   };
   const select3 = () => {
-    setIsClick3(true);
-    setShowImage3(false);
-    setShowImage4(true);
+    BirdSound();
+    setTimeout(() => {
+      setIsClick3(true);
+      setShowImage3(false);
+      setShowImage4(true);
+    }, 500);
   };
 
   const select4 = async () => {
+    BirdSound();
+
     setIsClick4(true);
     const currentTime = Date.now();
     const diff = currentTime - startTime;
 
     const duration = formatTime(diff);
-
-    if (isClick1 && isClick2 && isClick3) {
-      // await SaveGame(duration, true);
-      useNavigate.navigate('WellDoneScreen', {
-        data: duration,
-        avg: 5,
-        isWin: true,
-      });
-    } else {
-      // await SaveGame(duration, false);
-      useNavigate.navigate('WellDoneScreen', {
-        data: duration,
-        avg: 5,
-        isWin: false,
-      });
-    }
+    setTimeout(() => {
+      if (isClick1 && isClick2 && isClick3) {
+        // await SaveGame(duration, true);
+        useNavigate.navigate('WellDoneScreen', {
+          data: duration,
+          avg: 6,
+          isWin: true,
+        });
+      } else {
+        // await SaveGame(duration, false);
+        useNavigate.navigate('WellDoneScreen', {
+          data: duration,
+          avg: 6,
+          isWin: false,
+        });
+      }
+    }, 500);
   };
 
   return (
@@ -137,7 +209,7 @@ const ClickAnimalScreen7 = ({route}) => {
       source={require('../assets/img/background/bg_1_1.jpg')}>
       <Text
         style={[Theme.fBlack, Theme.f20, Theme.fBold, Theme.txtAlignCenter]}>
-        Click on the animal appearing on the screen
+        {MENU_LANGUAGES[lang][7]}
       </Text>
 
       <View style={[Theme.h5]} />
@@ -190,7 +262,7 @@ const ClickAnimalScreen7 = ({route}) => {
                 Theme.txtAlignCenter,
                 Theme.fBold,
               ]}>
-              Go To Next
+              {MENU_LANGUAGES[lang][28]}
             </Text>
           </TouchableOpacity>
         ) : null}

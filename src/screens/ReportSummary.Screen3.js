@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Theme from '../assets/theme/AxTheme';
 import {
-  Image,
   ImageBackground,
   Text,
   TouchableOpacity,
@@ -9,10 +8,18 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {GetAnalysis} from '../service/GameService';
+import {ReadLanguage} from '../constants/constants';
+import MENU_LANGUAGES from '../util/LanguageConst';
 
 const ReportSummaryScreen3 = ({navigation}) => {
   const [dataReport, setDataReport] = useState({});
   const [loading, setLoading] = useState(false); // change to true when intergrate
+  const [lang, setLang] = useState(0);
+
+  const getLang = async () => {
+    const langNum = await ReadLanguage();
+    setLang(langNum);
+  };
 
   const FetchAnalysis = async () => {
     const res = await GetAnalysis();
@@ -24,6 +31,7 @@ const ReportSummaryScreen3 = ({navigation}) => {
   };
 
   useEffect(() => {
+    getLang();
     console.log(' == ReportSummaryScreen3 ==');
     // FetchAnalysis();
   }, []);
@@ -47,53 +55,57 @@ const ReportSummaryScreen3 = ({navigation}) => {
                 Theme.alignItemCenter,
               ]}>
               <Text style={[Theme.fBlack, Theme.f25, Theme.fBold]}>
-                Report Summary
+                {MENU_LANGUAGES[lang][5]}
               </Text>
             </View>
           </View>
 
           <View style={[Theme.w90, Theme.h15, Theme.justAlign]}>
             <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-              Focused Attention Games
+              {MENU_LANGUAGES[lang][0]}
             </Text>
             <Text
               style={[
                 dataReport?.focused < 7 ? Theme.fGreen : Theme.fRed,
-                Theme.f20,
+                Theme.f18,
                 Theme.txtAlignCenter,
                 Theme.bgBlackShade,
                 Theme.p1,
                 Theme.px3,
                 Theme.borderRadius15,
               ]}>
-              {dataReport?.focused < 7 ? 'Good' : 'Need To Improve'}
+              {dataReport?.focused < 7
+                ? MENU_LANGUAGES[lang][13]
+                : MENU_LANGUAGES[lang][12]}
             </Text>
           </View>
           <View style={[Theme.w90, Theme.h15, Theme.justAlign]}>
             <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-              Selective Attention Games
+              {MENU_LANGUAGES[lang][1]}
             </Text>
             <Text
               style={[
                 dataReport?.selectiv < 7 ? Theme.fGreen : Theme.fRed,
-                Theme.f20,
+                Theme.f18,
                 Theme.txtAlignCenter,
                 Theme.bgBlackShade,
                 Theme.p1,
                 Theme.px3,
                 Theme.borderRadius15,
               ]}>
-              {dataReport?.selectiv < 7 ? 'Good' : 'Need To Improve'}
+              {dataReport?.selectiv < 7
+                ? MENU_LANGUAGES[lang][13]
+                : MENU_LANGUAGES[lang][12]}
             </Text>
           </View>
           <View style={[Theme.w90, Theme.h15, Theme.justAlign]}>
             <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-              Divided Attention Games
+              {MENU_LANGUAGES[lang][2]}
             </Text>
             <Text
               style={[
                 dataReport?.divided < 7 ? Theme.fGreen : Theme.fRed,
-                Theme.f20,
+                Theme.f18,
                 Theme.txtAlignCenter,
                 Theme.bgBlackShade,
                 Theme.p1,
@@ -101,38 +113,40 @@ const ReportSummaryScreen3 = ({navigation}) => {
                 Theme.borderRadius15,
               ]}>
               {dataReport?.divided < 62 && dataReport?.divided > 30
-                ? 'Good'
-                : 'Need To Improve'}
+                ? MENU_LANGUAGES[lang][13]
+                : MENU_LANGUAGES[lang][12]}
             </Text>
           </View>
           <View style={[Theme.w90, Theme.h15, Theme.justAlign]}>
             <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-              Sustained Attention Games
+              {MENU_LANGUAGES[lang][3]}
             </Text>
             <Text
               style={[
                 dataReport?.sustained < 7 ? Theme.fGreen : Theme.fRed,
-                Theme.f20,
+                Theme.f18,
                 Theme.txtAlignCenter,
                 Theme.bgBlackShade,
                 Theme.p1,
                 Theme.px3,
                 Theme.borderRadius15,
               ]}>
-              {dataReport?.sustained < 7 ? 'Good' : 'Need To Improve'}
+              {dataReport?.sustained < 7
+                ? MENU_LANGUAGES[lang][13]
+                : MENU_LANGUAGES[lang][12]}
             </Text>
           </View>
 
           <View style={[Theme.w90, Theme.h15, Theme.justAlign]}>
             <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-              Auditory Attention
+              {MENU_LANGUAGES[lang][4]}
             </Text>
             <Text
               style={[
                 dataReport?.father === 1 || dataReport?.mother === 1
                   ? Theme.fGreen
                   : Theme.fRed,
-                Theme.f20,
+                Theme.f18,
                 Theme.txtAlignCenter,
                 Theme.bgBlackShade,
                 Theme.p1,
@@ -140,12 +154,16 @@ const ReportSummaryScreen3 = ({navigation}) => {
                 Theme.borderRadius15,
               ]}>
               {dataReport?.father === 1 && dataReport?.mother === 1
-                ? 'Very Good'
+                ? MENU_LANGUAGES[lang][14]
                 : null}
-              {dataReport?.father === 1 && !dataReport?.mother ? 'Good' : null}
-              {dataReport?.mother === 1 && !dataReport?.father ? 'Good' : null}
+              {dataReport?.father === 1 && !dataReport?.mother
+                ? MENU_LANGUAGES[lang][13]
+                : null}
+              {dataReport?.mother === 1 && !dataReport?.father
+                ? MENU_LANGUAGES[lang][13]
+                : null}
               {!(dataReport?.father === 1 && dataReport?.mother === 1)
-                ? 'Need To Improve'
+                ? MENU_LANGUAGES[lang][12]
                 : null}
             </Text>
           </View>
@@ -153,11 +171,11 @@ const ReportSummaryScreen3 = ({navigation}) => {
           <View style={[Theme.w90, Theme.h15, Theme.justAlign]}>
             {dataReport?.status === 1 ? (
               <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-                Finaly, Child helth is good.
+                {MENU_LANGUAGES[lang][14]}
               </Text>
             ) : (
               <Text style={[Theme.fBlack, Theme.f20, Theme.txtAlignCenter]}>
-                Finaly, Child needs more attention.
+                {MENU_LANGUAGES[lang][15]}
               </Text>
             )}
           </View>

@@ -13,7 +13,7 @@ import ENDPOINT from '../../constants/constants';
 
 const recordOptions = {
   mute: false,
-  maxDuration: 5,
+  maxDuration: 7,
   quality: RNCamera.Constants.VideoQuality['288p'],
 };
 
@@ -80,10 +80,10 @@ const VideoRecorder = ({resArr, setResArr, setIsLoading, navigation}) => {
   useEffect(() => {
     setTimeout(() => {
       recordingHandler('father');
-    }, 5000);
+    }, 7000);
     setTimeout(() => {
       recordingHandler('mother');
-    }, 20000);
+    }, 25000);
   }, []); // eslint-disable-line
 
   return (
