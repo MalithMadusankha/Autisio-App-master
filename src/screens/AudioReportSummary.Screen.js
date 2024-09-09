@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Theme from '../assets/theme/AxTheme';
+import TM from '../assets/theme/AxTheme';
 import {
   Image,
   ImageBackground,
@@ -27,31 +27,32 @@ const AudioReportSummaryScreen = ({navigation, route}) => {
 
   return (
     <ImageBackground
-      imageStyle={[Theme.w100, Theme.h100, Theme.justAlign]}
-      style={[Theme.w100, Theme.h100, Theme.justAlign]}
+      imageStyle={[TM.w100, TM.h100, TM.justAlign]}
+      style={[TM.w100, TM.h100, TM.justAlign]}
       source={require('../assets/img/background/bg_3.jpg')}>
-      <View style={[Theme.w100, Theme.h70, Theme.justAlign]}>
-        <View style={[Theme.w100, Theme.h5, Theme.flexDirRow]}>
+      <View style={[TM.w100, TM.h80, TM.justAlign]}>
+        <View style={[TM.w100, TM.h5, TM.flexDirRow]}>
           <TouchableOpacity
-            style={[Theme.w15, Theme.h100, Theme.justAlign, Theme.ml2]}>
+            onPress={() => navigation.goBack()}
+            style={[TM.w15, TM.h100, TM.justAlign, TM.ml2, TM.mt5]}>
             <Image
               source={require('../assets/icons/angle-small-left.png')}
-              style={[Theme.w60, Theme.h53]}
+              style={[TM.w60, TM.h53]}
             />
           </TouchableOpacity>
         </View>
 
-        <View style={[Theme.w90, Theme.h20, Theme.flexDirRow]}>
-          <View style={[Theme.w10]} />
-          <View style={[Theme.w90, Theme.h100, Theme.justifyCenter]}>
-            <Text style={[Theme.fBlack, Theme.f25, Theme.fBold]}>
+        <View style={[TM.w90, TM.h20, TM.flexDirRow]}>
+          <View style={[TM.w10]} />
+          <View style={[TM.w90, TM.h100, TM.justifyCenter]}>
+            <Text style={[TM.fBlack, TM.f25, TM.fBold]}>
               {MENU_LANGUAGES[lang][5]}
             </Text>
           </View>
         </View>
         {/* left */}
-        <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
-          <Text style={[Theme.fBlack, Theme.f22, Theme.txtAlignCenter]}>
+        <View style={[TM.w90, TM.h20, TM.justAlign]}>
+          <Text style={[TM.fBlack, TM.f22, TM.txtAlignCenter]}>
             {AUDIO_GAME_LANG[lang][9]} -{' '}
             {resArr[0] > 0
               ? MENU_LANGUAGES[lang][17]
@@ -59,43 +60,43 @@ const AudioReportSummaryScreen = ({navigation, route}) => {
           </Text>
         </View>
         {/* right */}
-        <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
-          <Text style={[Theme.fBlack, Theme.f22, Theme.txtAlignCenter]}>
-            {AUDIO_GAME_LANG[lang][9]} -{' '}
+        <View style={[TM.w90, TM.h20, TM.justAlign]}>
+          <Text style={[TM.fBlack, TM.f22, TM.txtAlignCenter]}>
+            {AUDIO_GAME_LANG[lang][10]} -{' '}
             {resArr[1] < 0
               ? MENU_LANGUAGES[lang][17]
               : MENU_LANGUAGES[lang][18]}
           </Text>
         </View>
 
-        <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
-          <Text style={[Theme.fBlack, Theme.f22, Theme.txtAlignCenter]}>
+        <View style={[TM.w90, TM.h20, TM.justAlign]}>
+          <Text style={[TM.fBlack, TM.f22, TM.txtAlignCenter]}>
             {resArr[0] > 0 && resArr[1] < 0 ? AUDIO_GAME_LANG[lang][11] : null}
             {resArr[0] <= 0 && resArr[1] >= 0
               ? AUDIO_GAME_LANG[lang][12]
               : null}
           </Text>
         </View>
-        <View style={[Theme.h20]} />
+        <View style={[TM.h20]} />
       </View>
 
-      <View style={[Theme.w90, Theme.h20, Theme.justAlign]}>
+      <View style={[TM.w90, TM.h20, TM.justAlign]}>
         <TouchableOpacity
           onPress={() => navigation.navigate('AttentionScreen')}
           style={[
-            lang === 1 ? Theme.w75 : Theme.w60,
-            Theme.h38,
-            Theme.ml2,
-            Theme.bgBlack,
-            Theme.borderRadius20,
-            Theme.justAlign,
+            lang === 1 ? TM.w75 : TM.w60,
+            TM.h38,
+            TM.ml2,
+            TM.bgBlack,
+            TM.borderRadius20,
+            TM.justAlign,
           ]}>
           <Text
             style={[
-              Theme.fWhite,
-              lang === 1 ? Theme.f20 : Theme.f22,
-              Theme.txtAlignCenter,
-              Theme.fBold,
+              TM.fWhite,
+              lang === 1 ? TM.f20 : TM.f22,
+              TM.txtAlignCenter,
+              TM.fBold,
             ]}>
             {MENU_LANGUAGES[lang][19]}
           </Text>

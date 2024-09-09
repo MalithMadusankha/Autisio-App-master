@@ -116,7 +116,7 @@ const TopBottomAnimalScreen = ({route}) => {
     const currentTime = Date.now();
     const diff = currentTime - startTime;
     const duration = Math.floor(diff / 1000);
-    // await SaveGame(duration, true);
+    await SaveGame(duration, true);
     setTimeout(() => {
       if (currentImage === 1) {
         navigation.navigate('WellDoneScreen', {

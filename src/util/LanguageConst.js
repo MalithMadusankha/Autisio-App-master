@@ -34,6 +34,8 @@ const MENU_LANGUAGES = [
     'This leve for age 5',
     'This leve for age 6',
     'This leve for age 7',
+    'Go Back To Menu', // 34
+    'Take Screenshot',
   ],
   [
     'අවධානය යොමු කරන ක්‍රීඩා',
@@ -70,6 +72,8 @@ const MENU_LANGUAGES = [
     'මෙම අදියරය වයස අවරුදු 5',
     'මෙම අදියරය වයස අවරුදු 6',
     'මෙම අදියරය වයස අවරුදු 7',
+    'මෙනුව වෙත ආපසු යන්න',
+    'තිරයේ පින්තුරයක් ගන්න',
   ],
 ];
 

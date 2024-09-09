@@ -163,7 +163,7 @@ const GameLevel3Screen = () => {
     setThirdSelectedCard(null);
 
     const duration = Math.floor(elapsedTime / 1000) % 60;
-    // await SaveGame(duration, true);
+    await SaveGame(duration, true);
 
     useNavigate.navigate('WellDoneScreen', {
       data: Math.floor(elapsedTime / 1000) % 60,
