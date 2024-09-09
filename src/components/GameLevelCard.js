@@ -1,14 +1,22 @@
-import React from "react";
-import { View, Image, TouchableOpacity, StyleSheet } from "react-native";
-import Theme from "../assets/theme/AxTheme";
+import React from 'react';
+import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import Theme from '../assets/theme/AxTheme';
 
-const GameLevelCard = ({ imgUrls, onPress }) => {
+const GameLevelCard = ({imgUrls, onPress}) => {
   return (
     <View style={styles.container}>
       {imgUrls.map((imgUrl, index) => (
         <View key={index} style={styles.imageContainer}>
           <TouchableOpacity
-            style={[Theme.w100, Theme.h100, Theme.bgWhite, Theme.justAlign, Theme.borderRadius20, Theme.elevation8, Theme.borderColor5]}
+            style={[
+              Theme.w100,
+              Theme.h100,
+              Theme.bgWhite,
+              Theme.justAlign,
+              Theme.borderRadius20,
+              Theme.elevation8,
+              Theme.borderColor5,
+            ]}
             onPress={() => onPress(index)}>
             <Image source={imgUrl} style={styles.image} />
           </TouchableOpacity>
@@ -20,11 +28,11 @@ const GameLevelCard = ({ imgUrls, onPress }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   imageContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     margin: 5,
   },
   image: {

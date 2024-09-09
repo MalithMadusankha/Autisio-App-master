@@ -10,6 +10,8 @@ import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
 import com.zmxv.RNSound.RNSoundPackage; // <-- New
+import com.rnfs.RNFSPackage;
+import com.alpha0010.fs.FileAccessPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -26,6 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new RNSoundPackage());
+          // packages.add(new RNFSPackage());
+          // packages.add(new FileAccessPackage());
           return packages;
         }
 

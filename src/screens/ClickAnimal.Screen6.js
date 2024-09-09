@@ -47,7 +47,7 @@ const ClickAnimalScreen6 = ({route}) => {
     const diff = currentTime - startTime;
     console.log('isNav ', isNav);
     const duration = formatTime(diff);
-    // SaveGame(duration, false);
+    SaveGame(duration, false);
     useNavigate.navigate('WellDoneScreen', {
       data: duration,
       avg: 5,
@@ -183,16 +183,16 @@ const ClickAnimalScreen6 = ({route}) => {
 
     const duration = formatTime(diff);
 
-    setTimeout(() => {
+    setTimeout(async () => {
       if (isClick1 && isClick2 && isClick3) {
-        // await SaveGame(duration, true);
+        await SaveGame(duration, true);
         useNavigate.navigate('WellDoneScreen', {
           data: duration,
           avg: 6,
           isWin: true,
         });
       } else {
-        // await SaveGame(duration, false);
+        await SaveGame(duration, false);
         useNavigate.navigate('WellDoneScreen', {
           data: duration,
           avg: 6,
