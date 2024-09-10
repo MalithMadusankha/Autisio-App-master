@@ -14,10 +14,23 @@ import TM from '../assets/theme/AxTheme';
 import {SaveLanguage} from '../constants/constants';
 
 const LoginForm = ({navigation}) => {
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [password, setPassword] = useState('');
   const [age, setAge] = useState(5);
   const [gender, setGender] = useState('male');
   const [selectLang, setSelectLang] = useState(0);
+
+  const validateEmail = text => {
+    setEmail(text);
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(text)) {
+      setEmailError('Please enter a valid email address');
+    } else {
+      setEmailError('');
+    }
+  };
 
   const langHandler = async num => {
     await SaveLanguage(num);
@@ -26,10 +39,14 @@ const LoginForm = ({navigation}) => {
 
   const saveChildInfo = async () => {
     try {
-      const childInfo = {name, age, gender};
+      const childInfo = {email, age, gender};
       await AsyncStorage.setItem('childInfo', JSON.stringify(childInfo));
       console.log('Child information saved to AsyncStorage:', childInfo);
-      navigation.navigate('AttentionScreen');
+      if (email && password) {
+        navigation.navigate('AttentionScreen');
+      } else {
+        setEmailError('Please enter valide email and password');
+      }
     } catch (error) {
       console.error('Error saving child information:', error);
     }
@@ -38,17 +55,19 @@ const LoginForm = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Email</Text>
+      {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
       <TextInput
         style={[TM.w100, styles.input, TM.borderRadius20]}
-        // value={name}
-        onChangeText={text => setName(text)}
+        value={email}
+        onChangeText={validateEmail}
       />
 
       <Text style={styles.label}>Password</Text>
       <TextInput
         style={[TM.w100, styles.input, TM.borderRadius20]}
-        // value={name}
-        onChangeText={text => setName(text)}
+        value={password}
+        secureTextEntry={true}
+        onChangeText={text => setPassword(text)}
       />
 
       <Text style={styles.label}>Age</Text>
@@ -162,6 +181,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 5,
     marginTop: 10,
+  },
+  errorText: {
+    color: 'red',
+    marginTop: 0,
+    marginBottom: 2,
   },
   reg: {
     color: '#0f6ae0',
