@@ -1,10 +1,53 @@
-<div align="center"> 
-   
-   # Autisio App 
-   
-</div>
+# Autisio App
 
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+## Description
+The **Autisio App** is designed for children with Autism Spectrum Disorders (ASD). It includes various interactive games to assess attention skills, including **Focused Attention**, **Selective Attention**, **Divided Attention**, and **Sustained Attention** games. The app utilizes **face detection** and a **voice attention game** to track how the child responds to their parent's call. Based on the child's performance, the app predicts their autism level using machine learning algorithms.
+
+## Features
+- **Attention Games:**  
+  - **Focused Attention Game**
+  - **Selective Attention Game**
+  - **Divided Attention Game**
+  - **Sustained Attention Game**
+  
+  These games help assess the child's cognitive and attention skills.
+  
+- **Face Detection:**  
+  Using **OpenCV** and **MediaPipe**, the app detects the child's face to track their responses to the parent’s call in the voice attention game.
+  
+- **Machine Learning:**  
+  The app predicts the child’s autism level by analyzing game results. It uses the following machine learning algorithms:
+  - **Decision Tree**
+  - **Logistic Regression**
+  - **K-nearest Neighbors (K-NN)**
+  
+  The app predicts autism levels based on performance and age.
+  
+- **Adjustable Game Complexity:**  
+  The app adjusts the complexity of the games based on the child’s age to ensure appropriate difficulty levels.
+
+## Technologies Used
+- **Frontend:** React Native
+- **Backend:** FastAPI, Python
+- **Database:** MongoDB
+- **Authentication:** Firebase
+- **Face Detection & Machine Learning:** OpenCV, MediaPipe, Decision Tree, Logistic Regression, K-NN
+
+## Responsibilities
+- Developed the mobile app using **React Native**, integrating **Firebase** for authentication and **MongoDB** for data storage.
+- Implemented **face detection** and the **voice attention game** using **OpenCV** and **MediaPipe** to track the child's responses.
+- Built the **backend** using **FastAPI** to process data and predictions.
+- Applied machine learning models (**Decision Tree**, **Logistic Regression**, **K-NN**) to analyze game results and predict autism levels based on the child’s performance.
+- Designed the **user interface** to be simple and accessible, ensuring appropriate button sizes and muted colors for better usability.
+
+## Outcome
+The app successfully assists in assessing autism levels in children based on their interactions with the games. The machine learning models accurately predict autism levels, offering insights for parents and caregivers.
+
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/autisio-app.git
+
 
 # Getting Started
 
