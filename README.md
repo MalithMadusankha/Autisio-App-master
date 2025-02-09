@@ -5,91 +5,47 @@ The **Autisio App** is designed for children with Autism Spectrum Disorders (ASD
 
 ## Features
 - **Attention Games:**  
-  - **Focused Attention Game**
-  - **Selective Attention Game**
-  - **Divided Attention Game**
-  - **Sustained Attention Game**
-  
-  These games help assess the child's cognitive and attention skills.
-  
+  - **Focused Attention Game** 🎯  
+  - **Selective Attention Game** 🧐  
+  - **Divided Attention Game** 🔄  
+  - **Sustained Attention Game** ⏱️  
+  These games help assess the child's cognitive and attention skills.  
+
 - **Face Detection:**  
-  Using **OpenCV** and **MediaPipe**, the app detects the child's face to track their responses to the parent’s call in the voice attention game.
+  Using **OpenCV** and **MediaPipe**, the app detects the child's face to track their responses to the parent’s call in the voice attention game. 🧠👀
   
 - **Machine Learning:**  
   The app predicts the child’s autism level by analyzing game results. It uses the following machine learning algorithms:
-  - **Decision Tree**
-  - **Logistic Regression**
-  - **K-nearest Neighbors (K-NN)**
-  
+  - **Decision Tree** 🌳  
+  - **Logistic Regression** 📊  
+  - **K-nearest Neighbors (K-NN)** 🔍  
   The app predicts autism levels based on performance and age.
   
 - **Adjustable Game Complexity:**  
-  The app adjusts the complexity of the games based on the child’s age to ensure appropriate difficulty levels.
+  The app adjusts the complexity of the games based on the child’s age to ensure appropriate difficulty levels. 🔄🎮
 
 ## Technologies Used
-- **Frontend:** React Native
-- **Backend:** FastAPI, Python
-- **Database:** MongoDB
-- **Authentication:** Firebase
-- **Face Detection & Machine Learning:** OpenCV, MediaPipe, Decision Tree, Logistic Regression, K-NN
+- **Frontend:** React Native 🖥️
+- **Backend:** FastAPI ⚙️, Python 🐍
+- **Database:** MongoDB 💾
+- **Authentication:** Firebase 🔑
+- **Face Detection & Machine Learning:** OpenCV 🤖, MediaPipe 🎥, Decision Tree 🌳, Logistic Regression 📈, K-NN 🔍
+- **Deployment:** Docker 🐳, Uvicorn 🚀
 
 ## Responsibilities
-- Developed the mobile app using **React Native**, integrating **Firebase** for authentication and **MongoDB** for data storage.
-- Implemented **face detection** and the **voice attention game** using **OpenCV** and **MediaPipe** to track the child's responses.
-- Built the **backend** using **FastAPI** to process data and predictions.
-- Applied machine learning models (**Decision Tree**, **Logistic Regression**, **K-NN**) to analyze game results and predict autism levels based on the child’s performance.
-- Designed the **user interface** to be simple and accessible, ensuring appropriate button sizes and muted colors for better usability.
+- Developed the mobile app using **React Native**, integrating **Firebase** 🔑 for authentication and **MongoDB** 💾 for data storage.
+- Implemented **face detection** 🧠👀 and the **voice attention game** using **OpenCV** 🤖 and **MediaPipe** 🎥 to track the child's responses.
+- Built the **backend** ⚙️ using **FastAPI** 🚀 to process data and predictions.
+- Applied machine learning models (**Decision Tree** 🌳, **Logistic Regression** 📊, **K-NN** 🔍) to analyze game results and predict autism levels based on the child’s performance.
+- Designed the **user interface** to be simple and accessible, ensuring appropriate button sizes 🦸 and muted colors 🎨 for better usability.
 
 ## Outcome
-The app successfully assists in assessing autism levels in children based on their interactions with the games. The machine learning models accurately predict autism levels, offering insights for parents and caregivers.
+The app successfully assists in assessing autism levels in children based on their interactions with the games. The machine learning models accurately predict autism levels, offering insights for parents and caregivers. 📊💡
 
 ## Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/autisio-app.git
-
-
-# Getting Started
-
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
-
-## Step 1: Start the Metro Server
-
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
-
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
 
 
 
